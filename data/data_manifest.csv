@@ -1,0 +1,5 @@
+file,url,downloaded_at,bytes,rows,sha256,schema_version,notes
+taxi_zone_lookup.csv,https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv,2026-11-23T10:50:48Z,12331,265,1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed,taxi_zone_lookup (4 cols),matches dictionary
+yellow_tripdata_2024-04.parquet,https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-04.parquet,2026-11-23T10:50:48Z,59133625,3514289,ce37f736c7cf9e92164c850ef2b502a8f7bb590fc1804b6edbcb80293da01b89,yellow-2024 (19 cols),matches dictionary
+yellow_tripdata_2024-05.parquet,https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-05.parquet,2026-11-23T10:50:48Z,62553128,3723833,1974230be2b5a3ea92e47b5eb77f32dbf1de896d81ad8df4ab6faba52749ad23,yellow-2024 (19 cols),matches dictionary
+yellow_tripdata_2024-06.parquet,https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-06.parquet,2026-11-23T10:50:48Z,59859922,3539193,677cf14c8347f745b583f012fbdba072334c6c4efa17bfd6a64369f2ba30329c,yellow-2024 (19 cols),matches dictionary

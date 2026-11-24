@@ -1,0 +1,185 @@
+{
+  "mode": "full",
+  "input_rows": 10777315,
+  "retained_rows": 10614869,
+  "quarantined_rows": 162446,
+  "quarantined_by_rule": {
+    "R1": 0,
+    "R2": 24,
+    "R3": 40225,
+    "R4": 0,
+    "R4b": 122197
+  },
+  "flagged_by_rule": {
+    "R5": 3126,
+    "R6a": 132180,
+    "R6b": 56986,
+    "R7": 1222683
+  },
+  "rows_with_any_flag": 1349763,
+  "aggregation": {
+    "median_seconds": {
+      "A": 0.1094,
+      "B": 0.4704
+    },
+    "intermediate_rows": {
+      "A": 10614869,
+      "B": 266161
+    },
+    "map_tasks": {
+      "A": 1,
+      "B": 22
+    },
+    "output_keys": 264748,
+    "equivalent": true
+  },
+  "zone_hour": {
+    "zone_hour_all_rows": 574392,
+    "zone_hour_rows": 43680,
+    "covered_hours": 2184
+  },
+  "top_zones": [
+    {
+      "rank": 1,
+      "zone_id": 237,
+      "Borough": "Manhattan",
+      "Zone": "Upper East Side South",
+      "selection_pickups": 163473
+    },
+    {
+      "rank": 2,
+      "zone_id": 161,
+      "Borough": "Manhattan",
+      "Zone": "Midtown Center",
+      "selection_pickups": 161717
+    },
+    {
+      "rank": 3,
+      "zone_id": 132,
+      "Borough": "Queens",
+      "Zone": "JFK Airport",
+      "selection_pickups": 152864
+    },
+    {
+      "rank": 4,
+      "zone_id": 236,
+      "Borough": "Manhattan",
+      "Zone": "Upper East Side North",
+      "selection_pickups": 150781
+    },
+    {
+      "rank": 5,
+      "zone_id": 162,
+      "Borough": "Manhattan",
+      "Zone": "Midtown East",
+      "selection_pickups": 118181
+    },
+    {
+      "rank": 6,
+      "zone_id": 142,
+      "Borough": "Manhattan",
+      "Zone": "Lincoln Square East",
+      "selection_pickups": 115900
+    },
+    {
+      "rank": 7,
+      "zone_id": 230,
+      "Borough": "Manhattan",
+      "Zone": "Times Sq/Theatre District",
+      "selection_pickups": 115515
+    },
+    {
+      "rank": 8,
+      "zone_id": 186,
+      "Borough": "Manhattan",
+      "Zone": "Penn Station/Madison Sq West",
+      "selection_pickups": 110294
+    },
+    {
+      "rank": 9,
+      "zone_id": 138,
+      "Borough": "Queens",
+      "Zone": "LaGuardia Airport",
+      "selection_pickups": 110079
+    },
+    {
+      "rank": 10,
+      "zone_id": 239,
+      "Borough": "Manhattan",
+      "Zone": "Upper West Side South",
+      "selection_pickups": 100169
+    },
+    {
+      "rank": 11,
+      "zone_id": 163,
+      "Borough": "Manhattan",
+      "Zone": "Midtown North",
+      "selection_pickups": 99378
+    },
+    {
+      "rank": 12,
+      "zone_id": 170,
+      "Borough": "Manhattan",
+      "Zone": "Murray Hill",
+      "selection_pickups": 98803
+    },
+    {
+      "rank": 13,
+      "zone_id": 234,
+      "Borough": "Manhattan",
+      "Zone": "Union Sq",
+      "selection_pickups": 92032
+    },
+    {
+      "rank": 14,
+      "zone_id": 68,
+      "Borough": "Manhattan",
+      "Zone": "East Chelsea",
+      "selection_pickups": 91762
+    },
+    {
+      "rank": 15,
+      "zone_id": 48,
+      "Borough": "Manhattan",
+      "Zone": "Clinton East",
+      "selection_pickups": 88209
+    },
+    {
+      "rank": 16,
+      "zone_id": 79,
+      "Borough": "Manhattan",
+      "Zone": "East Village",
+      "selection_pickups": 83137
+    },
+    {
+      "rank": 17,
+      "zone_id": 249,
+      "Borough": "Manhattan",
+      "Zone": "West Village",
+      "selection_pickups": 81269
+    },
+    {
+      "rank": 18,
+      "zone_id": 141,
+      "Borough": "Manhattan",
+      "Zone": "Lenox Hill West",
+      "selection_pickups": 78873
+    },
+    {
+      "rank": 19,
+      "zone_id": 164,
+      "Borough": "Manhattan",
+      "Zone": "Midtown South",
+      "selection_pickups": 77907
+    },
+    {
+      "rank": 20,
+      "zone_id": 238,
+      "Borough": "Manhattan",
+      "Zone": "Upper West Side North",
+      "selection_pickups": 71607
+    }
+  ],
+  "zero_fill": "only where coverage_ok (full mode, all months, hour has >=1 city-wide trip); 0 = no recorded pickup, not proof of zero demand",
+  "seconds_total": 19.5
+}

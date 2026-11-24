@@ -1,0 +1,23 @@
+{
+  "seed": 42,
+  "months": ["2024-04", "2024-05", "2024-06"],
+  "base_url": "https://d37ci6vzurychx.cloudfront.net/trip-data/",
+  "file_pattern": "yellow_tripdata_{month}.parquet",
+  "zone_url": "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv",
+  "window": {"start": "2024-04-01 00:00:00", "end": "2024-07-01 00:00:00"},
+  "required_columns": ["VendorID", "tpep_pickup_datetime", "tpep_dropoff_datetime", "passenger_count",
+    "trip_distance", "RatecodeID", "store_and_fwd_flag", "PULocationID", "DOLocationID", "payment_type",
+    "fare_amount", "extra", "mta_tax", "tip_amount", "tolls_amount", "improvement_surcharge",
+    "total_amount", "congestion_surcharge", "Airport_fee"],
+  "invalid_zones": [264, 265],
+  "rules": {"max_distance_mi": 100, "max_fare": 1000, "max_duration_h": 24, "reversal_pairs": true},
+  "sample_rows": 20000,
+  "top_n_zones": 20,
+  "selection_month": "2024-04",
+  "splits": {"train": "2024-04", "valid": "2024-05", "test": "2024-06"},
+  "benchmark": {"repeats": 3, "warmup": 1, "batch_rows": 500000, "smoke_batch_rows": 2000},
+  "duckdb": {"threads": 8, "memory_limit": "8GB", "temp_directory": "data/.duckdb_tmp"},
+  "paths": {"raw": "data/raw", "clean": "data/clean", "quarantine": "data/quarantine",
+            "dim": "data/dim", "outputs": "outputs", "evidence": "evidence",
+            "manifest": "data/data_manifest.csv", "sample": "data/sample.parquet"}
+}

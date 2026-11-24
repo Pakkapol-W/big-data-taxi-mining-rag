@@ -1,0 +1,86 @@
+{
+  "rows_before": 10777315,
+  "rows_after_join": 10777315,
+  "matched": 10777315,
+  "unmatched": 0,
+  "invalid_zone_rows": 40225,
+  "unmatched_ids": [],
+  "pickup_month_vs_file": [
+    {
+      "file": "yellow_tripdata_2024-04.parquet",
+      "pickup_month": "2002-12",
+      "rows": 3
+    },
+    {
+      "file": "yellow_tripdata_2024-04.parquet",
+      "pickup_month": "2008-12",
+      "rows": 1
+    },
+    {
+      "file": "yellow_tripdata_2024-04.parquet",
+      "pickup_month": "2024-03",
+      "rows": 4
+    },
+    {
+      "file": "yellow_tripdata_2024-04.parquet",
+      "pickup_month": "2024-05",
+      "rows": 1
+    },
+    {
+      "file": "yellow_tripdata_2024-05.parquet",
+      "pickup_month": "2002-12",
+      "rows": 3
+    },
+    {
+      "file": "yellow_tripdata_2024-05.parquet",
+      "pickup_month": "2008-12",
+      "rows": 1
+    },
+    {
+      "file": "yellow_tripdata_2024-05.parquet",
+      "pickup_month": "2009-01",
+      "rows": 3
+    },
+    {
+      "file": "yellow_tripdata_2024-05.parquet",
+      "pickup_month": "2024-04",
+      "rows": 13
+    },
+    {
+      "file": "yellow_tripdata_2024-05.parquet",
+      "pickup_month": "2024-06",
+      "rows": 13
+    },
+    {
+      "file": "yellow_tripdata_2024-06.parquet",
+      "pickup_month": "2008-12",
+      "rows": 2
+    },
+    {
+      "file": "yellow_tripdata_2024-06.parquet",
+      "pickup_month": "2009-01",
+      "rows": 2
+    },
+    {
+      "file": "yellow_tripdata_2024-06.parquet",
+      "pickup_month": "2024-05",
+      "rows": 42
+    },
+    {
+      "file": "yellow_tripdata_2024-06.parquet",
+      "pickup_month": "2024-07",
+      "rows": 3
+    },
+    {
+      "file": "yellow_tripdata_2024-06.parquet",
+      "pickup_month": "2026-06",
+      "rows": 2
+    }
+  ],
+  "schemas": {
+    "yellow_tripdata_2024-04.parquet": "matches dictionary",
+    "yellow_tripdata_2024-05.parquet": "matches dictionary",
+    "yellow_tripdata_2024-06.parquet": "matches dictionary",
+    "taxi_zone_lookup.csv": "matches dictionary"
+  }
+}

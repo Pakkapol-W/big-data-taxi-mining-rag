@@ -1,0 +1,11 @@
+rule_id,condition,action,reason,input_rows,retained_rows,quarantined_rows,flagged_rows
+R1,"pickup or dropoff timestamp is NULL (Parquet stores typed timestamps, so 'unparseable' = NULL)",quarantine,"No valid pickup hour, so the trip cannot be counted",10777315,10777315,0,0
+R2,"pickup outside [2024-04-01 00:00, 2024-07-01 00:00) New York local time",quarantine,"Out of scope (e.g. 2002/2009/2026 dates). Scope is set by pickup time, not by source file",10777315,10777291,24,0
+R3,"PULocationID not in zone lookup, or 264 (Unknown) / 265 (Outside of NYC)",quarantine,Pickup cannot be assigned to a real NYC zone,10777291,10737066,40225,0
+R4,all 19 source columns identical to an earlier row; first copy kept,quarantine extra copies,"Same vendor, second-level timestamps, zones, distance and every fare component: a double submission, not two real trips",10737066,10737066,0,0
+R4b,"total_amount < 0 and an unmatched row with the same vendor, pickup, dropoff, PU and DO has total_amount = -this total (matched one-to-one)",quarantine the negative reversal; keep the original,"TLC records a void/dispute as the original plus a negative reversal with identical timestamps: one pickup, two accounting rows. Counting both double-counts the pickup",10737066,10614869,122197,0
+R5,"dropoff <= pickup, or duration > 24 h",flag f_order (retained),Pickup hour is still valid; only the duration is unreliable,10614869,10614869,0,3126
+R6a,trip_distance <= 0 or > 100 mi,flag f_distance (retained),Kept in pickup counts; excluded only from distance analyses,10614869,10614869,0,132180
+R6b,"fare_amount < 0 or > 1000, or total_amount < 0",flag f_fare (retained),Kept in pickup counts; excluded only from fare analyses (negatives are refunds/voids),10614869,10614869,0,56986
+R7,"NULL passenger_count, RatecodeID, store_and_fwd_flag, congestion_surcharge or Airport_fee","flag f_missing (retained, not filled)",Not filled with 0; kept NULL because the pickup itself is valid,10614869,10614869,0,1222683
+TOTAL,all rules; a row is quarantined by its first failing rule only,retained + quarantined = input,flags never remove rows; flagged_rows counts rows with at least one flag,10777315,10614869,162446,1349763

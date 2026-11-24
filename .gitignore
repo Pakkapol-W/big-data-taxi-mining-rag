@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.DS_Store
+data/raw/
+data/clean/
+data/quarantine/
+data/.duckdb_tmp/
+*.part
+*.tmp
+data/smoke/
+*.tmp/
+# course materials from the teacher (not our work)
+任务书_CN.html
+任务书_EN.html
+rubric.csv
+README.txt
+templates/
+# test-run output from smoke mode
+outputs/smoke/
+evidence/smoke/
+# Word lock files
+~$*
