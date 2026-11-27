@@ -187,3 +187,17 @@ Accepted work / 采用内容：All listed files. Smoke mode runs every stage exc
 replays the saved LLM outputs and fails if fresh retrieval no longer matches them. 20/20 tests pass.
 Human verification and corrections / 核验修正：To be completed by Pakkapol after reviewing the code.
 
+## Entry 13: Report sections 7–11, README and test report T10
+Date / 日期：2026-11-28
+Tool/model / 工具模型：Claude Code, claude-opus-5-5 (session 0d4a34ad)
+Purpose / 用途：Draft report sections 7–11 (exploration, clustering, forecasting, LLM evidence, dashboard, findings and
+risks) in the style of Part A; write README.md; fill the T10 row of the test report from its evidence files.
+Prompt / 输入：Asked to add the Modelling/LLM/Presentation part as new sections of the existing report file.
+Original output path / 原始输出：report/BDI_Report_PartA_Data_Compute.docx (sections 7–11, Tables 8–13, Figures 4–6),
+README.md, src/test_report.py
+Accepted work / 采用内容：To be decided by Pakkapol after reading. Sections 1–6 were not changed.
+Human verification and corrections / 核验修正：Every number was taken from the output files, not typed from memory. While
+drafting, the AI removed three of its own claims that the outputs do not support: "more trips quarantined at the
+airports" (true for JFK at 3.24%, not LaGuardia at 1.22%); a cause given for the peak-hour error; and a complete-sounding
+list of cluster 0 zones. Rendered in Word: 12 pages in total (brief limit 12). Text still to be read by Pakkapol.
+

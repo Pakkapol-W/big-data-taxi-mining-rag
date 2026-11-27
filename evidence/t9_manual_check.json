@@ -1,0 +1,29 @@
+{
+  "test": "T9",
+  "checked_by": "Pakkapol Wongnitirat",
+  "checked_on": "2026-11-28",
+  "page": "dashboard/index.html opened from disk, Wi-Fi off",
+  "steps": [
+    {
+      "step": "Open dashboard/index.html from disk with Wi-Fi off: all charts render",
+      "result": "pass"
+    },
+    {
+      "step": "Zone filter: pick 'Cluster 1' -> charts 2a, 2b, 3, 5, 6 and the selection summary update",
+      "result": "pass"
+    },
+    {
+      "step": "Date filter: 'Apr' -> charts 5/6 show the June-only empty state; 'Jun' restores them",
+      "result": "pass"
+    },
+    {
+      "step": "'None' zones -> every filtered chart shows the empty-state message; 'Reset' restores all",
+      "result": "pass"
+    },
+    {
+      "step": "Fixed charts 1 and 4 are labelled and do not change",
+      "result": "pass"
+    }
+  ],
+  "result": "PASS"
+}

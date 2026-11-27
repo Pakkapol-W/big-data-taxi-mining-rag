@@ -5,6 +5,7 @@ Each test records its observed values via pytest's record_property("actual", ...
 """
 from __future__ import annotations
 
+import json
 import platform
 import subprocess
 import sys
@@ -57,7 +58,29 @@ CASES = [  # (test id, test function, input, expected)
      "2 unanswerable questions recorded with expected INSUFFICIENT EVIDENCE; invented id/number fail the checker"),
 ]
 OTHER = [("T9", "Offline HTML, both filters, reset and empty states (manual)", "Presentation"),
-         ("T10", "Trace three dashboard values; verify all 12 LLM answers (manual)", "Presentation / LLM")]
+         ("T10", "Trace dashboard values to outputs (src/check_dashboard.py); verify all 12 LLM answers by hand", "Presentation / LLM")]
+
+
+def _manual_row(tid: str, what: str, owner: str) -> str:
+    """T10 is filled from its evidence files when they exist; T9 stays a hand check until recorded."""
+    if tid == "T9":
+        rec = ROOT / "evidence" / "t9_manual_check.json"
+        if rec.exists():
+            r = json.loads(rec.read_text(encoding="utf-8"))
+            n = sum(x["result"] == "pass" for x in r["steps"])
+            return (f"|{tid}|{what}|every step behaves as listed|{n}/{len(r['steps'])} steps pass; checked by "
+                    f"{r['checked_by']} on {r['checked_on']} ({r['page']})|{r['result']}|`evidence/t9_manual_check.json`|")
+    if tid == "T10":
+        ic, ev = ROOT / "evidence" / "integration_check.json", ROOT / "evidence" / "rag_evaluation.json"
+        if ic.exists() and ev.exists():
+            c = json.loads(ic.read_text(encoding="utf-8"))["summary"]
+            r = json.loads(ev.read_text(encoding="utf-8"))["summary"]
+            ok = c["passed"] == c["total"] and r.get("human_passed") == f"{r['llm_runs']}/{r['llm_runs']}"
+            actual = (f"dashboard checks {c['passed']}/{c['total']} (11 traced values, offline, narrative numbers); "
+                      f"LLM answers human-verified {r.get('human_passed')}")
+            return (f"|{tid}|{what}|all traced values equal outputs; 12/12 answers verified|{actual}|"
+                    f"{'PASS' if ok else 'FAIL'}|`evidence/integration_check.json`, `evidence/rag_evaluation.json`|")
+    return f"|{tid}|{what}|—|pending ({owner} owner)|—|—|"
 
 
 def main() -> int:
@@ -96,7 +119,7 @@ def main() -> int:
                "T3": "test_idempotence", "T5": "test_aggregate", "T6": "test_model", "T7": "test_model", "T8": "test_rag"}[tid]
         lines.append(f"|{tid}|{inp}|{exp}|{actual.replace('|', '/')}|{status}|`tests/{mod}.py::{fn}`|")
     for tid, what, owner in OTHER:
-        lines.append(f"|{tid}|{what}|—|pending ({owner} owner)|—|—|")
+        lines.append(_manual_row(tid, what, owner))
     out = ROOT / "evidence" / "test_report.md"
     out.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"{summary}\nwrote {out}")
