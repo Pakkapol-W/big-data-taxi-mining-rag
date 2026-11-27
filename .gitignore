@@ -21,3 +21,4 @@ outputs/smoke/
 evidence/smoke/
 # Word lock files
 ~$*
+data/.models/

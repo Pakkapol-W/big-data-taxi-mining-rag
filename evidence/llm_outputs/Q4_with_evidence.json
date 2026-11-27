@@ -1,0 +1,28 @@
+{
+  "run_id": "Q4_with_evidence",
+  "question_id": "Q4",
+  "condition": "with_evidence",
+  "evidence_ids": [
+    "EV-MOD-OVERALL",
+    "EV-MOD-WORST",
+    "EV-MOD-SPEC"
+  ],
+  "model": "llama3.1:8b",
+  "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+  "provider": "ollama (local)",
+  "ollama_version": "0.40.16",
+  "date": "2026-11-28T02:15:17+08:00",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 8192
+  },
+  "prompt": "You are answering questions about a data analysis of New York City yellow-taxi pickups (April-June 2024).\nRules:\n1. Use ONLY the evidence given below. Do not use outside knowledge and do not guess numbers.\n2. After every factual claim, cite the supporting evidence ID in square brackets, e.g. [EV-EXAMPLE].\n3. If the evidence does not contain what is needed to answer, start your reply with \"INSUFFICIENT EVIDENCE:\" and say what is missing.\n4. Do not claim that one thing causes another; the evidence shows associations only.\n5. Answer in at most 5 sentences.\n\nEVIDENCE:\n[EV-MOD-OVERALL] (source: outputs/metrics.json; metric: June 2024 one-step-ahead errors in pickups per zone-hour (MAE, RMSE); negative predictions clipped to 0)\nForecast accuracy: model vs baseline. June 2024 test, 14,400 zone-hours, 20 zones; model and baseline on identical rows. Model MAE 19.72, RMSE 30.95. Baseline MAE 29.29, RMSE 47.00. MAE is 32.6% lower than the baseline. Mean pickups per zone-hour 149.2. Model beats the baseline in 20 of 20 zones.\n[EV-MOD-WORST] (source: outputs/metrics.json; metric: June 2024 one-step-ahead errors in pickups per zone-hour (MAE, RMSE); negative predictions clipped to 0; worst zone)\nWorst-zone error analysis. Largest model MAE: LaGuardia Airport (zone 138), MAE 32.32 vs baseline 42.63, mean 159.0 pickups/hour. Worst hours of day: 0:00 MAE 59.5, 22:00 MAE 57.2, 17:00 MAE 48.3. Largest single errors: 2024-06-02 18:00:00 actual 451, predicted 230, baseline 180; 2024-06-02 21:00:00 actual 480, predicted 275, baseline 230; 2024-06-24 00:00:00 actual 432, predicted 253, baseline 192.\n[EV-MOD-SPEC] (source: outputs/metrics.json; metric: Forecast specification frozen before the June test)\nForecast setup. Target: pickups in hour h=t+1 per zone, predicted at the end of hour t. Features: zone_id, hour_of_day, weekday, lag1, lag24, mean24, lag168 (lag1=y(t), lag24=y(h-24), mean24=mean of the last 24 observed hours, lag168=y(h-168)); all use hours up to t only. Baseline: same zone and hour 7 days earlier. Model: HistGradientBoostingRegressor; settings compared on May: hgb_a May MAE 20.48; hgb_b May MAE 20.57; hgb_c May MAE 20.43; hgb_d May MAE 20.21; May baseline MAE 28.84. Chosen: hgb_d (lowest May MAE), refit once on April+May, tested on June without refitting. Rows lacking 168 h history dropped: 3,360.\n\nQUESTION: How does the forecast model compare with the baseline on the June test month, and which zone has the largest error?\n\nANSWER:",
+  "raw_output": "The forecast model outperforms the baseline in the June test month, with a Mean Absolute Error (MAE) of 19.72 compared to the baseline's MAE of 29.29, which is a 32.6% improvement. The model beats the baseline in all 20 zones. The model's Root Mean Squared Error (RMSE) is 30.95, while the baseline's RMSE is 47.00. The largest error occurs in LaGuardia Airport (zone 138), with a model MAE of 32.32 compared to the baseline's MAE of 42.63. The mean pickups per zone-hour is 149.2. [EV-MOD-OVERALL, EV-MOD-WORST]",
+  "stats": {
+    "total_duration": 27772973700,
+    "prompt_eval_count": 748,
+    "eval_count": 157,
+    "done_reason": "stop"
+  }
+}

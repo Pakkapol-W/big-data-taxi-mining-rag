@@ -1,0 +1,5 @@
+k,silhouette,sizes,min_size,inertia,may_ari,chosen,rule
+2,0.5332,17/3,3,0.038351,1.0,True,"max silhouette with min cluster size >= 2; tie -> smaller k; May ARI reported, not used; June unused"
+3,0.3709,9/8/3,3,0.022087,1.0,False,"max silhouette with min cluster size >= 2; tie -> smaller k; May ARI reported, not used; June unused"
+4,0.2729,7/6/5/2,2,0.017822,0.3494,False,"max silhouette with min cluster size >= 2; tie -> smaller k; May ARI reported, not used; June unused"
+5,0.2864,8/7/2/2/1,1,0.014578,0.7096,False,"max silhouette with min cluster size >= 2; tie -> smaller k; May ARI reported, not used; June unused"

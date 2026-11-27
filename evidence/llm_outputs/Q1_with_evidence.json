@@ -1,0 +1,28 @@
+{
+  "run_id": "Q1_with_evidence",
+  "question_id": "Q1",
+  "condition": "with_evidence",
+  "evidence_ids": [
+    "EV-DICT-DERIVED",
+    "EV-DICT-DISTANCE",
+    "EV-EDA-TEMPORAL"
+  ],
+  "model": "llama3.1:8b",
+  "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+  "provider": "ollama (local)",
+  "ollama_version": "0.40.16",
+  "date": "2026-11-28T02:14:05+08:00",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 8192
+  },
+  "prompt": "You are answering questions about a data analysis of New York City yellow-taxi pickups (April-June 2024).\nRules:\n1. Use ONLY the evidence given below. Do not use outside knowledge and do not guess numbers.\n2. After every factual claim, cite the supporting evidence ID in square brackets, e.g. [EV-EXAMPLE].\n3. If the evidence does not contain what is needed to answer, start your reply with \"INSUFFICIENT EVIDENCE:\" and say what is missing.\n4. Do not claim that one thing causes another; the evidence shows associations only.\n5. Answer in at most 5 sentences.\n\nEVIDENCE:\n[EV-DICT-DERIVED] (source: evidence/data_dictionary.csv; metric: TLC data dictionary fields and project-derived fields; units as stated per field)\nData dictionary - Derived fields: zone-hour target. zone_id (integer; unit: TLC Taxi Zone ID): = PULocationID of retained trips. hour (timestamp; unit: New York local time): Pickup time rounded down to the hour (YYYY-MM-DD HH:00:00). pickup_count (integer; unit: trips per zone-hour): Number of retained trips that started in the zone in that hour. Recorded pickups only - not demand; 0 means no recorded pickup. coverage_ok (boolean; unit: flag): True when all months were acquired and the hour has at least one city-wide trip; only then is a missing count filled with 0.\n[EV-DICT-DISTANCE] (source: evidence/data_dictionary.csv; metric: TLC data dictionary fields and project-derived fields; units as stated per field)\nData dictionary - Distance field and unit. trip_distance (float; unit: miles): Elapsed trip distance in miles reported by the taximeter.\n[EV-EDA-TEMPORAL] (source: outputs/eda_summary.json; metric: City-wide pickups per hour/day (sum over all valid zones), New York local time)\nTemporal pickup patterns. All valid zones, April-June 2024. Weekday pickups peak at 18:00 and are lowest at 03:00; the peak hour averages 25.3 times the trough hour. Weekend peak hour: 18:00. Mean pickups per day by weekday: Mon 98,348, Tue 117,197, Wed 123,594, Thu 130,412, Fri 121,490, Sat 121,955, Sun 103,532. Busiest day 2024-05-16 (141,865); quietest day 2024-05-27 (71,235). Monthly totals: 2024-04 3,463,797, 2024-05 3,667,559, 2024-06 3,483,513. Associations only.\n\nQUESTION: What unit is trip_distance measured in, and in which time zone are the pickup hours expressed?\n\nANSWER:",
+  "raw_output": "The unit of trip_distance is miles [EV-DICT-DISTANCE]. The pickup hours are expressed in New York local time [EV-EDA-TEMPORAL].",
+  "stats": {
+    "total_duration": 17268081600,
+    "prompt_eval_count": 611,
+    "eval_count": 35,
+    "done_reason": "stop"
+  }
+}

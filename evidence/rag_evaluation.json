@@ -1,0 +1,675 @@
+{
+  "generated_at": "2026-11-28T02:44:15",
+  "mode": "full",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "questions_file": "evidence/rag_questions.json",
+  "summary": {
+    "retrieval_hits": "4/4",
+    "llm_runs": 12,
+    "auto_passed": "12/12",
+    "human_reviewed": "12/12",
+    "human_passed": "12/12",
+    "prompt_text_drift": [],
+    "auto_errors": [],
+    "human_errors": []
+  },
+  "retrieval": [
+    {
+      "question_id": "Q1",
+      "top_k": [
+        {
+          "rank": 1,
+          "evidence_id": "EV-DICT-DERIVED",
+          "score": 0.7747
+        },
+        {
+          "rank": 2,
+          "evidence_id": "EV-DICT-DISTANCE",
+          "score": 0.7324
+        },
+        {
+          "rank": 3,
+          "evidence_id": "EV-EDA-TEMPORAL",
+          "score": 0.7265
+        }
+      ],
+      "expected_evidence": [
+        "EV-DICT-DISTANCE",
+        "EV-DICT-TIME"
+      ],
+      "expected_hit": true
+    },
+    {
+      "question_id": "Q2",
+      "top_k": [
+        {
+          "rank": 1,
+          "evidence_id": "EV-EDA-TEMPORAL",
+          "score": 0.8501
+        },
+        {
+          "rank": 2,
+          "evidence_id": "EV-EDA-ZONES",
+          "score": 0.7304
+        },
+        {
+          "rank": 3,
+          "evidence_id": "EV-MOD-SPEC",
+          "score": 0.7083
+        }
+      ],
+      "expected_evidence": [
+        "EV-EDA-TEMPORAL"
+      ],
+      "expected_hit": true
+    },
+    {
+      "question_id": "Q3",
+      "top_k": [
+        {
+          "rank": 1,
+          "evidence_id": "EV-CLU-1",
+          "score": 0.6889
+        },
+        {
+          "rank": 2,
+          "evidence_id": "EV-CLU-0",
+          "score": 0.6692
+        },
+        {
+          "rank": 3,
+          "evidence_id": "EV-EDA-TEMPORAL",
+          "score": 0.6608
+        }
+      ],
+      "expected_evidence": [
+        "EV-CLU-1",
+        "EV-CLU-0",
+        "EV-CLU-SELECTION"
+      ],
+      "expected_hit": true
+    },
+    {
+      "question_id": "Q4",
+      "top_k": [
+        {
+          "rank": 1,
+          "evidence_id": "EV-MOD-OVERALL",
+          "score": 0.7606
+        },
+        {
+          "rank": 2,
+          "evidence_id": "EV-MOD-WORST",
+          "score": 0.6926
+        },
+        {
+          "rank": 3,
+          "evidence_id": "EV-MOD-SPEC",
+          "score": 0.6917
+        }
+      ],
+      "expected_evidence": [
+        "EV-MOD-OVERALL",
+        "EV-MOD-WORST",
+        "EV-MOD-ZONES"
+      ],
+      "expected_hit": true
+    },
+    {
+      "question_id": "Q5",
+      "top_k": [
+        {
+          "rank": 1,
+          "evidence_id": "EV-SCOPE",
+          "score": 0.5717
+        },
+        {
+          "rank": 2,
+          "evidence_id": "EV-QR-R3",
+          "score": 0.5548
+        },
+        {
+          "rank": 3,
+          "evidence_id": "EV-EDA-ZONES",
+          "score": 0.5532
+        }
+      ],
+      "expected_evidence": [],
+      "expected_hit": null
+    },
+    {
+      "question_id": "Q6",
+      "top_k": [
+        {
+          "rank": 1,
+          "evidence_id": "EV-EDA-TEMPORAL",
+          "score": 0.6802
+        },
+        {
+          "rank": 2,
+          "evidence_id": "EV-EDA-ZONES",
+          "score": 0.6589
+        },
+        {
+          "rank": 3,
+          "evidence_id": "EV-SCOPE",
+          "score": 0.6315
+        }
+      ],
+      "expected_evidence": [],
+      "expected_hit": null
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "Q1_with_evidence",
+      "question_id": "Q1",
+      "condition": "with_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:14:05+08:00",
+      "output_file": "evidence/llm_outputs/Q1_with_evidence.json",
+      "raw_output": "The unit of trip_distance is miles [EV-DICT-DISTANCE]. The pickup hours are expressed in New York local time [EV-EDA-TEMPORAL].",
+      "auto": {
+        "cited_ids": [
+          "EV-DICT-DISTANCE",
+          "EV-EDA-TEMPORAL"
+        ],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": true,
+        "says_insufficient": false,
+        "expected_insufficient": false,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [],
+        "retrieval_matches_saved": true,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    },
+    {
+      "run_id": "Q1_without_evidence",
+      "question_id": "Q1",
+      "condition": "without_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:14:24+08:00",
+      "output_file": "evidence/llm_outputs/Q1_without_evidence.json",
+      "raw_output": "INSUFFICIENT EVIDENCE: The unit of trip_distance and the time zone of pickup hours are not specified in the provided evidence.",
+      "auto": {
+        "cited_ids": [],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": null,
+        "says_insufficient": true,
+        "expected_insufficient": true,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [],
+        "retrieval_matches_saved": null,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    },
+    {
+      "run_id": "Q2_with_evidence",
+      "question_id": "Q2",
+      "condition": "with_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:14:30+08:00",
+      "output_file": "evidence/llm_outputs/Q2_with_evidence.json",
+      "raw_output": "According to the evidence, weekday pickups peak at 18:00 across all zones [EV-EDA-TEMPORAL]. The peak hour averages 25.3 times the trough hour, which is the quietest hour (03:00) [EV-EDA-TEMPORAL].",
+      "auto": {
+        "cited_ids": [
+          "EV-EDA-TEMPORAL"
+        ],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": true,
+        "says_insufficient": false,
+        "expected_insufficient": false,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [
+          18.0,
+          3.0,
+          25.3
+        ],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [
+          18,
+          3,
+          25.3
+        ],
+        "retrieval_matches_saved": true,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    },
+    {
+      "run_id": "Q2_without_evidence",
+      "question_id": "Q2",
+      "condition": "without_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:14:43+08:00",
+      "output_file": "evidence/llm_outputs/Q2_without_evidence.json",
+      "raw_output": "INSUFFICIENT EVIDENCE: The evidence does not contain information about the hour of the day when weekday pickups peak across all zones, or the size of that peak compared with the quietest hour.",
+      "auto": {
+        "cited_ids": [],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": null,
+        "says_insufficient": true,
+        "expected_insufficient": true,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [],
+        "retrieval_matches_saved": null,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    },
+    {
+      "run_id": "Q3_with_evidence",
+      "question_id": "Q3",
+      "condition": "with_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:14:50+08:00",
+      "output_file": "evidence/llm_outputs/Q3_with_evidence.json",
+      "raw_output": "Based on the evidence, the night-life cluster is Cluster 1, which consists of zones Clinton East (48), East Village (79), and West Village (249). Their daily pickup profile peaks at 22:00, with a share of 34.6% of daily pickups between 22:00-02:59. This is in contrast to Cluster 0, which peaks at 18:00 and has a lower share of pickups between 22:00-02:59 (13.3%). [EV-CLU-1], [EV-CLU-0]",
+      "auto": {
+        "cited_ids": [
+          "EV-CLU-0",
+          "EV-CLU-1"
+        ],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": true,
+        "says_insufficient": false,
+        "expected_insufficient": false,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [
+          22.0,
+          22.0,
+          2.0,
+          18.0,
+          22.0,
+          2.0,
+          1.0,
+          48.0,
+          79.0,
+          249.0,
+          34.6,
+          0.0,
+          13.3
+        ],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [
+          22,
+          34.6,
+          13.3
+        ],
+        "retrieval_matches_saved": true,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    },
+    {
+      "run_id": "Q3_without_evidence",
+      "question_id": "Q3",
+      "condition": "without_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:15:10+08:00",
+      "output_file": "evidence/llm_outputs/Q3_without_evidence.json",
+      "raw_output": "INSUFFICIENT EVIDENCE: The evidence does not contain information about the night-life cluster, its constituent zones, or the daily pickup profiles of these zones compared to others.",
+      "auto": {
+        "cited_ids": [],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": null,
+        "says_insufficient": true,
+        "expected_insufficient": true,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [],
+        "retrieval_matches_saved": null,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    },
+    {
+      "run_id": "Q4_with_evidence",
+      "question_id": "Q4",
+      "condition": "with_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:15:17+08:00",
+      "output_file": "evidence/llm_outputs/Q4_with_evidence.json",
+      "raw_output": "The forecast model outperforms the baseline in the June test month, with a Mean Absolute Error (MAE) of 19.72 compared to the baseline's MAE of 29.29, which is a 32.6% improvement. The model beats the baseline in all 20 zones. The model's Root Mean Squared Error (RMSE) is 30.95, while the baseline's RMSE is 47.00. The largest error occurs in LaGuardia Airport (zone 138), with a model MAE of 32.32 compared to the baseline's MAE of 42.63. The mean pickups per zone-hour is 149.2. [EV-MOD-OVERALL, EV-MOD-WORST]",
+      "auto": {
+        "cited_ids": [
+          "EV-MOD-OVERALL",
+          "EV-MOD-WORST"
+        ],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": true,
+        "says_insufficient": false,
+        "expected_insufficient": false,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [
+          19.72,
+          29.29,
+          32.6,
+          20.0,
+          30.95,
+          47.0,
+          138.0,
+          32.32,
+          42.63,
+          149.2
+        ],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [
+          19.7,
+          29.3,
+          31.0,
+          47.0,
+          32.3
+        ],
+        "retrieval_matches_saved": true,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    },
+    {
+      "run_id": "Q4_without_evidence",
+      "question_id": "Q4",
+      "condition": "without_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:15:47+08:00",
+      "output_file": "evidence/llm_outputs/Q4_without_evidence.json",
+      "raw_output": "INSUFFICIENT EVIDENCE: There is no evidence provided to compare the forecast model with the baseline on the June test month, or to determine which zone has the largest error.",
+      "auto": {
+        "cited_ids": [],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": null,
+        "says_insufficient": true,
+        "expected_insufficient": true,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [],
+        "retrieval_matches_saved": null,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    },
+    {
+      "run_id": "Q5_with_evidence",
+      "question_id": "Q5",
+      "condition": "with_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:15:54+08:00",
+      "output_file": "evidence/llm_outputs/Q5_with_evidence.json",
+      "raw_output": "INSUFFICIENT EVIDENCE: The evidence does not contain information about the number of people unable to find a taxi in Midtown during June. It only provides data on pickup counts per zone and hour, but does not account for demand or the number of people trying to hail a taxi.",
+      "auto": {
+        "cited_ids": [],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": null,
+        "says_insufficient": true,
+        "expected_insufficient": true,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [],
+        "retrieval_matches_saved": true,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    },
+    {
+      "run_id": "Q5_without_evidence",
+      "question_id": "Q5",
+      "condition": "without_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:16:06+08:00",
+      "output_file": "evidence/llm_outputs/Q5_without_evidence.json",
+      "raw_output": "INSUFFICIENT EVIDENCE: The evidence does not contain any information about the number of people unable to find a taxi in Midtown during June.",
+      "auto": {
+        "cited_ids": [],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": null,
+        "says_insufficient": true,
+        "expected_insufficient": true,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [],
+        "retrieval_matches_saved": null,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    },
+    {
+      "run_id": "Q6_with_evidence",
+      "question_id": "Q6",
+      "condition": "with_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:16:12+08:00",
+      "output_file": "evidence/llm_outputs/Q6_with_evidence.json",
+      "raw_output": "INSUFFICIENT EVIDENCE: The evidence does not contain information about weather conditions, such as rain, and its impact on pickups in specific zones. There is no data on weather or any other external factors that might influence pickups. The evidence only provides information about temporal and spatial patterns of pickups.",
+      "auto": {
+        "cited_ids": [],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": null,
+        "says_insufficient": true,
+        "expected_insufficient": true,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [],
+        "retrieval_matches_saved": true,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    },
+    {
+      "run_id": "Q6_without_evidence",
+      "question_id": "Q6",
+      "condition": "without_evidence",
+      "model": "llama3.1:8b",
+      "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "date": "2026-11-28T02:16:23+08:00",
+      "output_file": "evidence/llm_outputs/Q6_without_evidence.json",
+      "raw_output": "INSUFFICIENT EVIDENCE: There is no evidence provided to answer this question.",
+      "auto": {
+        "cited_ids": [],
+        "citations_valid": true,
+        "invalid_citations": [],
+        "citations_retrieved": true,
+        "has_citation": null,
+        "says_insufficient": true,
+        "expected_insufficient": true,
+        "insufficiency_ok": true,
+        "numbers_in_answer": [],
+        "unsupported_numbers": [],
+        "numbers_supported": true,
+        "key_numbers_found": [],
+        "retrieval_matches_saved": null,
+        "auto_failed": [],
+        "auto_pass": true
+      },
+      "human": {
+        "reviewer": "Pakkapol Wongnitirat",
+        "reviewed_at": "28 November 2026",
+        "retrieval_relevant": true,
+        "numbers_match_reference": true,
+        "citations_support_claims": true,
+        "unsupported_inference": true,
+        "verdict": "pass",
+        "errors": [],
+        "corrected_answer": ""
+      }
+    }
+  ]
+}

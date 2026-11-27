@@ -16,8 +16,33 @@
   "selection_month": "2024-04",
   "splits": {"train": "2024-04", "valid": "2024-05", "test": "2024-06"},
   "benchmark": {"repeats": 3, "warmup": 1, "batch_rows": 500000, "smoke_batch_rows": 2000},
+  "cluster": {"profile_month": "2024-04", "stability_month": "2024-05", "k_values": [2, 3, 4, 5],
+              "n_init": 10, "min_cluster_size": 2},
+  "model": {
+    "target": "pickup_count at hour h = t+1, predicted at the end of hour t",
+    "features": ["zone_id", "hour_of_day", "weekday", "lag1", "lag24", "mean24", "lag168"],
+    "baseline": "lag168",
+    "history_hours": 168,
+    "peak": {"weekdays": [0, 1, 2, 3, 4], "hours": [7, 8, 9],
+             "definition": "Mon-Fri target hours 07:00, 08:00, 09:00 (New York local); fixed before testing"},
+    "param_grid": [
+      {"name": "hgb_a", "loss": "squared_error", "learning_rate": 0.1,  "max_iter": 200, "max_leaf_nodes": 31, "min_samples_leaf": 20},
+      {"name": "hgb_b", "loss": "squared_error", "learning_rate": 0.05, "max_iter": 400, "max_leaf_nodes": 15, "min_samples_leaf": 20},
+      {"name": "hgb_c", "loss": "squared_error", "learning_rate": 0.05, "max_iter": 300, "max_leaf_nodes": 63, "min_samples_leaf": 40, "l2_regularization": 1.0},
+      {"name": "hgb_d", "loss": "poisson",       "learning_rate": 0.1,  "max_iter": 200, "max_leaf_nodes": 31, "min_samples_leaf": 20}
+    ],
+    "selection_metric": "valid_mae",
+    "refit_on_train_valid": true
+  },
+  "rag": {
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "top_k": 3,
+    "llm": {"provider": "ollama", "model": "llama3.1:8b", "host": "http://localhost:11434",
+            "temperature": 0, "seed": 42, "num_ctx": 8192}
+  },
   "duckdb": {"threads": 8, "memory_limit": "8GB", "temp_directory": "data/.duckdb_tmp"},
   "paths": {"raw": "data/raw", "clean": "data/clean", "quarantine": "data/quarantine",
             "dim": "data/dim", "outputs": "outputs", "evidence": "evidence",
-            "manifest": "data/data_manifest.csv", "sample": "data/sample.parquet"}
+            "manifest": "data/data_manifest.csv", "sample": "data/sample.parquet",
+            "dashboard": "dashboard", "models_cache": "data/.models", "llm_outputs": "evidence/llm_outputs"}
 }

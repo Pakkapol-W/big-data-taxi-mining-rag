@@ -1,0 +1,8 @@
+feature,definition,latest_hour_used,available_at_end_of_t
+hour_of_day,hour of day of target hour h (0-23),h (calendar only),True
+weekday,day of week of h (0=Mon),h (calendar only),True
+zone_id,"pickup zone, categorical; zone set fixed from April",none,True
+lag1,y(h-1): count in the last observed hour t,h-1,True
+lag24,y(h-24): same hour on the previous day,h-24,True
+mean24,mean of y(h-24) .. y(h-1): trailing 24 observed hours,h-1,True
+lag168,y(h-168): same hour one week earlier (also the baseline),h-168,True

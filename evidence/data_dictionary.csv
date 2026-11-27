@@ -1,0 +1,17 @@
+field,group,type,unit,definition,used_for,source
+tpep_pickup_datetime,time,timestamp,New York local time,Date and time when the meter was engaged. Interpreted as New York local time (no daylight-saving change between April and June 2024),hour key; window filter (R2),TLC Yellow Trip Records Data Dictionary
+tpep_dropoff_datetime,time,timestamp,New York local time,Date and time when the meter was disengaged,order/duration check (R5),TLC Yellow Trip Records Data Dictionary
+PULocationID,location,integer,TLC Taxi Zone ID,TLC Taxi Zone in which the taximeter was engaged; joins to LocationID in the Taxi Zone Lookup (265 rows; 264 = Unknown and 265 = Outside of NYC are excluded),zone key; R3,TLC Yellow Trip Records Data Dictionary; taxi_zone_lookup.csv
+DOLocationID,location,integer,TLC Taxi Zone ID,TLC Taxi Zone in which the taximeter was disengaged,not used for counts,TLC Yellow Trip Records Data Dictionary
+trip_distance,distance,float,miles,Elapsed trip distance in miles reported by the taximeter,distance flag (R6a),TLC Yellow Trip Records Data Dictionary
+passenger_count,trip,integer,passengers,Number of passengers in the vehicle (entered by the driver),missing flag (R7),TLC Yellow Trip Records Data Dictionary
+RatecodeID,trip,integer,code,Final rate code at the end of the trip: 1 Standard; 2 JFK; 3 Newark; 4 Nassau or Westchester; 5 Negotiated fare; 6 Group ride; 99 Null/unknown,missing flag (R7),TLC Yellow Trip Records Data Dictionary
+payment_type,payment,integer,code,How the passenger paid: 1 Credit card; 2 Cash; 3 No charge; 4 Dispute; 5 Unknown; 6 Voided trip. Code 0 appears in 2024 files with missing fields and is not in the dictionary,reversal rule context (R4b); missing flag (R7),TLC Yellow Trip Records Data Dictionary; observed in data
+fare_amount,money,float,US dollars,Time-and-distance fare calculated by the meter,fare flag (R6b),TLC Yellow Trip Records Data Dictionary
+tip_amount,money,float,US dollars,Tip amount; populated for credit card tips; cash tips are not included,not used,TLC Yellow Trip Records Data Dictionary
+total_amount,money,float,US dollars,Total amount charged to passengers; does not include cash tips,fare flag (R6b); reversal matching (R4b),TLC Yellow Trip Records Data Dictionary
+Airport_fee,money,float,US dollars,Airport fee charged for pickups at LaGuardia and JFK airports,missing flag (R7),TLC Yellow Trip Records Data Dictionary
+zone_id,derived,integer,TLC Taxi Zone ID,= PULocationID of retained trips,zone_hour key,this project (src/aggregate.py)
+hour,derived,timestamp,New York local time,Pickup time rounded down to the hour (YYYY-MM-DD HH:00:00),zone_hour key,this project (src/aggregate.py)
+pickup_count,derived,integer,trips per zone-hour,Number of retained trips that started in the zone in that hour. Recorded pickups only - not demand; 0 means no recorded pickup,forecast target,this project (src/store.py)
+coverage_ok,derived,boolean,flag,True when all months were acquired and the hour has at least one city-wide trip; only then is a missing count filled with 0,zero-fill rule,this project (src/store.py)

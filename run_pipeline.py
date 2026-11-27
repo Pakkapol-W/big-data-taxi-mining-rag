@@ -3,7 +3,12 @@
     python run_pipeline.py --config config.json --mode smoke   # 20k sample, seconds; no zero-fill
     python run_pipeline.py --config config.json --mode full    # all 3 months, official outputs
 
-Stages: acquire (full only) -> clean -> aggregate (A vs B benchmark) -> zone_hour grid.
+Stages: acquire (full only) -> clean -> aggregate (A vs B benchmark) -> zone_hour grid
+        -> explore (EDA numbers) -> cluster (April profiles, k selection)
+        -> forecast (tune on May, freeze, test on June vs 7-day baseline)
+        -> evidence corpus -> retrieval (fresh embeddings, top-3) -> verify saved LLM outputs (replay).
+        -> dashboard data (dashboard/assets/data.js) -> dashboard number/offline check.
+The 12 LLM outputs are produced once by scripts/run_llm.py (needs Ollama) and replayed here.
 Any failed check raises and exits with a non-zero code.
 Teammates append their stages (clustering, model, RAG) after `zone_hour`.
 """
@@ -14,7 +19,8 @@ import json
 import sys
 import time
 
-from src import acquire, aggregate, clean, store
+from src import (acquire, aggregate, check_dashboard, clean, cluster, dashboard, evidence, explore, forecast, rag,
+                 rag_verify, store)
 from src.common import connect, ensure_dirs, load_config, log
 
 
@@ -40,6 +46,15 @@ def main(argv: list[str] | None = None) -> int:
     top = store.select_top_zones(zh, cfg)
     out = store.write_outputs(con, zh, top, cfg)
 
+    eda = explore.run(cfg)
+    clu = cluster.run(cfg)
+    met = forecast.run(cfg)
+    corpus = evidence.run(cfg)
+    rag.run(cfg)
+    rev = rag_verify.run(cfg)
+    dashboard.run(cfg)
+    chk = check_dashboard.run(cfg)
+
     report = c["report"]
     summary = {
         "mode": cfg["mode"],
@@ -53,13 +68,22 @@ def main(argv: list[str] | None = None) -> int:
         "aggregation": agg,
         "zone_hour": {k: v for k, v in out.items() if k != "top_zones"},
         "top_zones": out["top_zones"],
+        "explore": {"weekday_peak_hour": eda["temporal"]["weekday_peak_hour"],
+                    "top20_share_of_all_pickups": eda["zones"]["top20_share_of_all_pickups"]},
+        "cluster": {"chosen_k": clu["chosen_k"],
+                    "sizes": [c_["size"] for c_ in clu["clusters"]]},
+        "forecast": {"chosen": met["selection"]["chosen"],
+                     **{k: met["test"][k] for k in ("rows", "mae_model", "mae_baseline", "rmse_model", "rmse_baseline")}},
+        "dashboard_checks": chk["summary"],
+        "rag": {"corpus_chunks": len(corpus), **{k: v for k, v in rev["summary"].items()
+                                                  if k not in ("auto_errors", "human_errors")}},
         "zero_fill": "only where coverage_ok (full mode, all months, hour has >=1 city-wide trip); "
                      "0 = no recorded pickup, not proof of zero demand",
         "seconds_total": round(time.perf_counter() - t0, 1),
     }
     (cfg["paths"]["evidence"] / "pipeline_summary.json").write_text(json.dumps(summary, indent=2, default=str))
     if cfg["mode"] == "smoke":
-        log("pipeline", "SMOKE checks passed (cleaning/aggregation only; says nothing about model accuracy)")
+        log("pipeline", "SMOKE checks passed (code paths only; says nothing about model accuracy)")
     log("pipeline", f"done in {summary['seconds_total']}s")
     return 0
 

@@ -1,0 +1,60 @@
+{
+  "written_at": "2026-11-28T02:10:17+08:00",
+  "written_by": "Pakkapol (LLM owner); approved before any LLM query",
+  "note": "Reference facts and expected insufficiency were fixed BEFORE querying the LLM (brief section 06). Numbers are rounded because a rerun on other hardware may change the 4th decimal.",
+  "questions": [
+    {
+      "id": "Q1", "type": "units",
+      "question": "What unit is trip_distance measured in, and in which time zone are the pickup hours expressed?",
+      "answerable": true,
+      "reference_facts": ["trip_distance is in miles (reported by the taximeter)",
+                          "pickup hours are New York local time; hour = pickup time rounded down to the hour"],
+      "expected_evidence": ["EV-DICT-DISTANCE", "EV-DICT-TIME"],
+      "key_numbers": []
+    },
+    {
+      "id": "Q2", "type": "finding",
+      "question": "At what hour of the day do weekday pickups peak across all zones, and how large is that peak compared with the quietest hour?",
+      "answerable": true,
+      "reference_facts": ["weekday peak hour is 18:00", "the quietest weekday hour is 03:00",
+                          "the peak is about 25 times the 03:00 trough (ratio 25.3)"],
+      "expected_evidence": ["EV-EDA-TEMPORAL"],
+      "key_numbers": [18, 3, 25.3]
+    },
+    {
+      "id": "Q3", "type": "finding",
+      "question": "Which zones form the night-life cluster, and how does their daily pickup profile differ from the other zones?",
+      "answerable": true,
+      "reference_facts": ["k=2 was chosen; the night-life cluster has 3 zones: Clinton East, East Village, West Village",
+                          "its profile peaks at 22-23h", "34.6% of its pickups fall in 22:00-02:59 versus 13.3% for the other (17-zone) cluster"],
+      "expected_evidence": ["EV-CLU-1", "EV-CLU-0", "EV-CLU-SELECTION"],
+      "key_numbers": [3, 22, 34.6, 13.3, 17]
+    },
+    {
+      "id": "Q4", "type": "forecast_error",
+      "question": "How does the forecast model compare with the baseline on the June test month, and which zone has the largest error?",
+      "answerable": true,
+      "reference_facts": ["June MAE model about 19.7 vs baseline about 29.3 (about 33% lower)",
+                          "June RMSE model about 31.0 vs baseline about 47.0",
+                          "the worst zone is LaGuardia Airport (zone 138) with MAE about 32.3"],
+      "expected_evidence": ["EV-MOD-OVERALL", "EV-MOD-WORST", "EV-MOD-ZONES"],
+      "key_numbers": [19.7, 29.3, 31.0, 47.0, 32.3]
+    },
+    {
+      "id": "Q5", "type": "unanswerable",
+      "question": "How many people were unable to find a taxi in Midtown during June?",
+      "answerable": false,
+      "reference_facts": ["INSUFFICIENT EVIDENCE: the data records completed pickups only, not unmet demand or people who could not find a taxi"],
+      "expected_evidence": [],
+      "key_numbers": []
+    },
+    {
+      "id": "Q6", "type": "unanswerable",
+      "question": "Did rainy days reduce pickups in the night-life zones?",
+      "answerable": false,
+      "reference_facts": ["INSUFFICIENT EVIDENCE: no weather data is in the evidence, so no effect of rain can be stated (and association would not show cause)"],
+      "expected_evidence": [],
+      "key_numbers": []
+    }
+  ]
+}

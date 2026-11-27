@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NYC Taxi Pickups Dashboard</title>
+<!-- Offline: every script and style is a local file. Data is assets/data.js (built by src/dashboard.py). -->
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/echarts.min.js"></script>
+<script src="assets/data.js"></script>
+</head>
+<body>
+<header class="page-head">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <p class="eyebrow">Introduction to Big Data · Capstone · Group 14</p>
+        <h1>NYC yellow-taxi pickups: patterns, zones and next-hour forecast</h1>
+        <p class="lede">April–June 2024 · 20 busiest pickup zones · New York local time. Every number on this page is
+          read from the pipeline outputs listed under each chart; nothing is typed in by hand.</p>
+      </div>
+      <button id="themeBtn" class="btn ghost" type="button" aria-label="Toggle light or dark theme">Theme</button>
+    </div>
+    <nav class="toc" aria-label="Sections">
+      <a href="#problem">1 Problem</a><a href="#trust">2 Data trust</a><a href="#patterns">3 Patterns</a>
+      <a href="#mining">4 Mining</a><a href="#forecast">5 Forecast</a><a href="#llm">6 LLM evidence</a>
+      <a href="#advice">7 Advice &amp; limits</a>
+    </nav>
+  </div>
+</header>
+
+<div class="filters" id="filters" role="region" aria-label="Filters">
+  <div class="wrap filter-row">
+    <details class="zone-pick" id="zonePick">
+      <summary class="btn"><span>Zones</span> <b id="zoneCount">20 / 20</b></summary>
+      <div class="zone-menu">
+        <div class="zone-actions">
+          <button type="button" class="btn small" data-zones="all">All</button>
+          <button type="button" class="btn small" data-zones="none">None</button>
+          <span id="clusterBtns"></span>
+        </div>
+        <div id="zoneList" class="zone-list"></div>
+      </div>
+    </details>
+    <label class="field">From <input type="date" id="dFrom"></label>
+    <label class="field">To <input type="date" id="dTo"></label>
+    <div class="presets" role="group" aria-label="Date presets">
+      <button type="button" class="btn small" data-preset="all">All</button>
+      <button type="button" class="btn small" data-preset="2024-04">Apr</button>
+      <button type="button" class="btn small" data-preset="2024-05">May</button>
+      <button type="button" class="btn small" data-preset="2024-06">Jun</button>
+    </div>
+    <button type="button" class="btn" id="resetBtn">Reset</button>
+    <p class="sel-summary" id="selSummary" aria-live="polite"></p>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="problem">
+    <h2>1 · Problem</h2>
+    <p class="prose">For each of the 20 busiest yellow-taxi pickup zones, forecast the number of pickups in the next
+      hour and explain the patterns with traceable evidence. The target is <b>recorded pickups</b> per zone and hour,
+      not demand: a zero means no recorded trip, not that nobody wanted one.</p>
+    <div class="tiles" id="kpis"></div>
+  </section>
+
+  <section id="trust">
+    <h2>2 · Data trust</h2>
+    <article class="card">
+      <header class="card-head"><h3>Chart 1 · Rows quarantined and flagged, by quality rule</h3><span class="tag fixed">Fixed · not affected by filters</span></header>
+      <p class="sub" id="c1sub"></p>
+      <div class="chart" id="c1" style="height:380px"></div>
+      <details class="table-view"><summary>Table view</summary><div id="c1table"></div></details>
+      <p class="meta" id="c1meta"></p>
+    </article>
+  </section>
+
+  <section id="patterns">
+    <h2>3 · Patterns</h2>
+    <article class="card">
+      <header class="card-head"><h3>Chart 2a · Daily pickups, selected zones</h3><span class="tag live">Filtered</span></header>
+      <p class="sub" id="c2sub"></p>
+      <div class="chart" id="c2" style="height:300px"></div>
+      <p class="meta" id="c2meta"></p>
+    </article>
+    <article class="card">
+      <header class="card-head"><h3>Chart 2b · Average pickups by hour of day, weekday vs weekend</h3><span class="tag live">Filtered</span></header>
+      <p class="sub" id="c2bsub"></p>
+      <div class="chart" id="c2b" style="height:300px"></div>
+      <p class="meta" id="c2bmeta"></p>
+    </article>
+    <article class="card">
+      <header class="card-head"><h3>Chart 3 · Zone × hour of day: average pickups per hour</h3><span class="tag live">Filtered</span></header>
+      <p class="sub" id="c3sub"></p>
+      <div class="chart" id="c3" style="height:560px"></div>
+      <p class="meta" id="c3meta"></p>
+    </article>
+  </section>
+
+  <section id="mining">
+    <h2>4 · Mining: zone clusters</h2>
+    <article class="card">
+      <header class="card-head"><h3>Chart 4 · 24-hour pickup profiles by cluster (April) and cluster sizes</h3><span class="tag fixed">Fixed · April only, not affected by filters</span></header>
+      <p class="sub" id="c4sub"></p>
+      <div class="two-col">
+        <div class="chart" id="c4" style="height:340px"></div>
+        <div class="chart" id="c4b" style="height:340px"></div>
+      </div>
+      <details class="table-view" open><summary>k selection (silhouette, sizes, May stability)</summary><div id="c4table"></div></details>
+      <p class="meta" id="c4meta"></p>
+    </article>
+  </section>
+
+  <section id="forecast">
+    <h2>5 · Forecast: next-hour pickups, June test</h2>
+    <div class="tiles" id="fkpis"></div>
+    <article class="card">
+      <header class="card-head"><h3>Chart 5 · Actual vs baseline vs model prediction (sum of selected zones)</h3><span class="tag live">Filtered · June only</span></header>
+      <p class="sub" id="c5sub"></p>
+      <div class="chart" id="c5" style="height:360px"></div>
+      <p class="meta" id="c5meta"></p>
+    </article>
+    <article class="card">
+      <header class="card-head"><h3>Chart 6 · Mean absolute error per zone: model vs baseline</h3><span class="tag live">Filtered · June only</span></header>
+      <p class="sub" id="c6sub"></p>
+      <div class="chart" id="c6" style="height:520px"></div>
+      <details class="table-view"><summary>Table view</summary><div id="c6table"></div></details>
+      <p class="meta" id="c6meta"></p>
+    </article>
+  </section>
+
+  <section id="llm">
+    <h2>6 · LLM evidence: retrieval-grounded answers</h2>
+    <p class="prose" id="llmIntro"></p>
+    <div class="tiles" id="llmKpis"></div>
+    <div id="llmItems"></div>
+  </section>
+
+  <section id="advice">
+    <h2>7 · Findings, recommendations and limitations</h2>
+    <div class="advice-grid">
+      <div class="card"><h3>Three numerical findings</h3><ol id="findings"></ol></div>
+      <div class="card"><h3>Two conditional recommendations</h3><ol id="recs"></ol></div>
+      <div class="card"><h3>Two limitations</h3><ol id="limits"></ol></div>
+    </div>
+  </section>
+
+  <section id="lineage">
+    <h2>Sources and lineage</h2>
+    <div class="card"><div id="lineageTable"></div><p class="meta" id="genMeta"></p></div>
+  </section>
+</main>
+
+<div id="tooltipEv" class="ev-pop" role="tooltip" hidden></div>
+<script src="assets/app.js"></script>
+</body>
+</html>

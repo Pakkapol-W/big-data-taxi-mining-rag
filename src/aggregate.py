@@ -97,8 +97,22 @@ def hardware() -> str:
         ram = int(subprocess.check_output(["sysctl", "-n", "hw.memsize"]).strip()) / 2**30
         cpu = subprocess.check_output(["sysctl", "-n", "machdep.cpu.brand_string"]).decode().strip()
     except Exception:  # non-macOS
-        ram = os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES") / 2**30
         cpu = platform.processor() or platform.machine()
+        if hasattr(os, "sysconf"):  # Linux
+            ram = os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES") / 2**30
+        else:  # Windows: no os.sysconf
+            import ctypes
+
+            class _MemStatus(ctypes.Structure):
+                _fields_ = [("dwLength", ctypes.c_ulong), ("dwMemoryLoad", ctypes.c_ulong),
+                            ("ullTotalPhys", ctypes.c_ulonglong), ("ullAvailPhys", ctypes.c_ulonglong),
+                            ("ullTotalPageFile", ctypes.c_ulonglong), ("ullAvailPageFile", ctypes.c_ulonglong),
+                            ("ullTotalVirtual", ctypes.c_ulonglong), ("ullAvailVirtual", ctypes.c_ulonglong),
+                            ("ullAvailExtendedVirtual", ctypes.c_ulonglong)]
+            ms = _MemStatus()
+            ms.dwLength = ctypes.sizeof(_MemStatus)
+            ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(ms))
+            ram = ms.ullTotalPhys / 2**30
     return f"{cpu}; {os.cpu_count()} cores; {ram:.0f} GB RAM; {platform.system()} {platform.release()}"
 
 

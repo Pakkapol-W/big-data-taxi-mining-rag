@@ -1,4 +1,4 @@
-"""Run pytest and write evidence/test_report.md from the real results (T1–T5, Data + Compute).
+"""Run pytest and write evidence/test_report.md from the real results (T1-T8 automated; T9-T10 manual).
 
 Run:  python -m src.test_report
 Each test records its observed values via pytest's record_property("actual", ...).
@@ -39,11 +39,24 @@ CASES = [  # (test id, test function, input, expected)
      "A == B == 7 hand-counted keys (sum 11); unique keys; B partials > keys"),
     ("T5", "test_T5_benchmark_logs_runs_and_medians", "benchmark on fixture",
      "experiment_log has per-run seconds, 2 medians, equivalence row"),
+    ("T6", "test_T6_disjoint_splits", "synthetic grid 6 zones x 2,184 h (tests/test_model.py)",
+     "train=Apr, valid=May, test=Jun; no shared keys; 168 h-history rows dropped and counted (train only)"),
+    ("T6", "test_T6_features_past_only", "zone 20, target 2024-06-10 12:00; then y(>=h) set to 1e6",
+     "lags/mean24 equal hand values; features of row h unchanged by the perturbation"),
+    ("T6", "test_T6_train_only_selection", "June counts of zone 10 set to 1e6; profile_month=June config",
+     "top zones from April only; clusters + May model selection unchanged; June profile config refused"),
+    ("T7", "test_T7_metrics_hand_checked", "y=[0,2,4], p=[1,2,1]; clip([-0.5,0,1.25])",
+     "MAE 4/3, RMSE sqrt(10/3); negatives -> 0, no rounding"),
+    ("T7", "test_T7_same_rows_for_model_and_baseline", "forecast.run on synthetic grid",
+     "every June row has y_true, y_pred, baseline; metrics recomputed from predictions.csv match; baseline=y(h-168)"),
+    ("T8", "test_T8_corpus_ids_valid", "evidence/evidence_corpus.jsonl",
+     ">=10 chunks; unique EV-* ids; source_file exists; metric_definition and timestamp present; no trip rows"),
+    ("T8", "test_T8_top3_sorted", "toy vectors with a score tie; evidence/retrieval_log.json",
+     "top-3 in descending score, ties by id; every saved retrieval has 3 sorted hits"),
+    ("T8", "test_T8_unsupported_questions_recorded", "rag_questions.json; 4 hand-made outputs",
+     "2 unanswerable questions recorded with expected INSUFFICIENT EVIDENCE; invented id/number fail the checker"),
 ]
-OTHER = [("T6", "Disjoint splits, past-only features, train-only zone selection", "Modelling"),
-         ("T7", "Hand-check MAE/RMSE; same test rows for both methods", "Modelling"),
-         ("T8", "Valid evidence IDs, sorted top-3, unsupported questions recorded", "LLM"),
-         ("T9", "Offline HTML, both filters, reset and empty states (manual)", "Presentation"),
+OTHER = [("T9", "Offline HTML, both filters, reset and empty states (manual)", "Presentation"),
          ("T10", "Trace three dashboard values; verify all 12 LLM answers (manual)", "Presentation / LLM")]
 
 
@@ -71,7 +84,8 @@ def main() -> int:
         f"Result / 结果：{summary}",
         "",
         "Fixture: 19 hand-made trips in 3 monthly Parquet files + 7-zone lookup; every expected value "
-        "was counted by hand (see the table in `tests/conftest.py`).",
+        "was counted by hand (see the table in `tests/conftest.py`). T6/T7 use a synthetic complete zone-hour "
+        "grid (6 zones x 2,184 h) built in `tests/test_model.py`.",
         "",
         "|ID|Input 输入|Expected 预期|Actual 实际|Status 状态|Evidence 证据|",
         "|---|---|---|---|---|---|",
@@ -79,7 +93,7 @@ def main() -> int:
     for tid, fn, inp, exp in CASES:
         status, actual = results.get(fn, ("NOT RUN", "test not found"))
         mod = {"T1": "test_acquire", "T2": "test_clean", "T4": "test_clean",
-               "T3": "test_idempotence", "T5": "test_aggregate"}[tid]
+               "T3": "test_idempotence", "T5": "test_aggregate", "T6": "test_model", "T7": "test_model", "T8": "test_rag"}[tid]
         lines.append(f"|{tid}|{inp}|{exp}|{actual.replace('|', '/')}|{status}|`tests/{mod}.py::{fn}`|")
     for tid, what, owner in OTHER:
         lines.append(f"|{tid}|{what}|—|pending ({owner} owner)|—|—|")

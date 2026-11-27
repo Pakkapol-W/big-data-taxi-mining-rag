@@ -1,0 +1,24 @@
+{
+  "run_id": "Q6_without_evidence",
+  "question_id": "Q6",
+  "condition": "without_evidence",
+  "evidence_ids": [],
+  "model": "llama3.1:8b",
+  "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+  "provider": "ollama (local)",
+  "ollama_version": "0.40.16",
+  "date": "2026-11-28T02:16:23+08:00",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 8192
+  },
+  "prompt": "You are answering questions about a data analysis of New York City yellow-taxi pickups (April-June 2024).\nRules:\n1. Use ONLY the evidence given below. Do not use outside knowledge and do not guess numbers.\n2. After every factual claim, cite the supporting evidence ID in square brackets, e.g. [EV-EXAMPLE].\n3. If the evidence does not contain what is needed to answer, start your reply with \"INSUFFICIENT EVIDENCE:\" and say what is missing.\n4. Do not claim that one thing causes another; the evidence shows associations only.\n5. Answer in at most 5 sentences.\n\nEVIDENCE:\n(No evidence was retrieved for this question.)\n\nQUESTION: Did rainy days reduce pickups in the night-life zones?\n\nANSWER:",
+  "raw_output": "INSUFFICIENT EVIDENCE: There is no evidence provided to answer this question.",
+  "stats": {
+    "total_duration": 2859782800,
+    "prompt_eval_count": 168,
+    "eval_count": 18,
+    "done_reason": "stop"
+  }
+}

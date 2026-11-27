@@ -1,0 +1,137 @@
+{
+  "instructions": "Fill one entry per run by hand: booleans true/false, verdict 'pass' or 'fail', list specific errors, and write a corrected answer for failed runs. Never edit evidence/llm_outputs/.",
+  "reviews": {
+    "Q1_with_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": [],
+      "corrected_answer": ""
+    },
+    "Q1_without_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": [],
+      "corrected_answer": ""
+    },
+    "Q2_with_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": [],
+      "corrected_answer": ""
+    },
+    "Q2_without_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": [],
+      "corrected_answer": ""
+    },
+    "Q3_with_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": ["numbers are right, but the citations are bundled at the end of the answer instead of after each claim"],
+      "corrected_answer": ""
+    },
+    "Q3_without_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": [],
+      "corrected_answer": ""
+    },
+    "Q4_with_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": ["numbers are right, but the citations are bundled at the end of the answer instead of after each claim"],
+      "corrected_answer": ""
+    },
+    "Q4_without_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": [],
+      "corrected_answer": ""
+    },
+    "Q5_with_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": [],
+      "corrected_answer": ""
+    },
+    "Q5_without_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": [],
+      "corrected_answer": ""
+    },
+    "Q6_with_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": [],
+      "corrected_answer": ""
+    },
+    "Q6_without_evidence": {
+      "reviewer": "Pakkapol Wongnitirat",
+      "reviewed_at": "28 November 2026",
+      "retrieval_relevant": true,
+      "numbers_match_reference": true,
+      "citations_support_claims": true,
+      "unsupported_inference": true,
+      "verdict": "pass",
+      "errors": [],
+      "corrected_answer": ""
+    }
+  }
+}

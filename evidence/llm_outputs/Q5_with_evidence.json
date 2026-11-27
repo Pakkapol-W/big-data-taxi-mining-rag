@@ -1,0 +1,28 @@
+{
+  "run_id": "Q5_with_evidence",
+  "question_id": "Q5",
+  "condition": "with_evidence",
+  "evidence_ids": [
+    "EV-SCOPE",
+    "EV-QR-R3",
+    "EV-EDA-ZONES"
+  ],
+  "model": "llama3.1:8b",
+  "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+  "provider": "ollama (local)",
+  "ollama_version": "0.40.16",
+  "date": "2026-11-28T02:15:54+08:00",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 8192
+  },
+  "prompt": "You are answering questions about a data analysis of New York City yellow-taxi pickups (April-June 2024).\nRules:\n1. Use ONLY the evidence given below. Do not use outside knowledge and do not guess numbers.\n2. After every factual claim, cite the supporting evidence ID in square brackets, e.g. [EV-EXAMPLE].\n3. If the evidence does not contain what is needed to answer, start your reply with \"INSUFFICIENT EVIDENCE:\" and say what is missing.\n4. Do not claim that one thing causes another; the evidence shows associations only.\n5. Answer in at most 5 sentences.\n\nEVIDENCE:\n[EV-SCOPE] (source: config.json; metric: Project configuration: scope, target, zone selection and split)\nScope, target and split. Data: NYC TLC yellow taxi trips for months 2024-04, 2024-05, 2024-06, pickup window [2024-04-01 00:00:00, 2024-07-01 00:00:00) New York local time. Target: pickup_count per zone and hour (recorded pickups, not demand). Forecast zones: top 20 zones by retained pickups in 2024-04, ties to lower zone_id, fixed for the project. Temporal split: train 2024-04, validation 2024-05, test 2024-06. Random seed 42. Zones 264 (Unknown) and 265 (Outside of NYC) excluded.\n[EV-QR-R3] (source: evidence/quality_report.csv; metric: Trip-row counts before/after one cleaning rule over all 3 monthly files (April-June 2024); quarantined rows are removed from pickup counts, flagged rows are kept)\nQuality rule R3. Rule R3. Condition: PULocationID not in zone lookup, or 264 (Unknown) / 265 (Outside of NYC). Action: quarantine. Reason: Pickup cannot be assigned to a real NYC zone. Counts: input rows 10,777,291; retained rows 10,737,066; quarantined rows 40,225; flagged rows 0.\n[EV-EDA-ZONES] (source: outputs/eda_summary.json; metric: Per-zone hourly pickup statistics for the 20 forecast zones, April-June 2024)\nDifferences between forecast zones. The 20 forecast zones hold 62.2% of all retained pickups (6,599,636) across 263 valid zones. Per zone (April-June): Upper East Side South (zone 237): peak 18:00, weekend/weekday 0.65, mean 230/h; Midtown Center (zone 161): peak 18:00, weekend/weekday 0.59, mean 227/h; JFK Airport (zone 132): peak 16:00, weekend/weekday 1.01, mean 216/h; Upper East Side North (zone 236): peak 15:00, weekend/weekday 0.66, mean 211/h; Midtown East (zone 162): peak 18:00, weekend/weekday 0.65, mean 166/h; Lincoln Square East (zone 142): peak 22:00, weekend/weekday 0.90, mean 158/h; Times Sq/Theatre District (zone 230): peak 22:00, weekend/weekday 0.87, mean 161/h; Penn Station/Madison Sq West (zone 186): peak 18:00, weekend/weekday 0.89, mean 153/h; LaGuardia Airport (zone 138): peak 14:00, weekend/weekday 0.75, mean 160/h; Upper West Side South (zone 239): peak 17:00, weekend/weekday 0.97, mean 137/h; Midtown North (zone 163): peak 18:00, weekend/weekday 0.73, mean 139/h; Murray Hill (zone 170): peak 18:00, weekend/weekday 0.75, mean 140/h; Union Sq (zone 234): peak 18:00, weekend/weekday 0.89, mean 130/h; East Chelsea (zone 68): peak 18:00, weekend/weekday 1.02, mean 131/h; Clinton East (zone 48): peak 22:00, weekend/weekday 1.17, mean 122/h; East Village (zone 79): peak 23:00, weekend/weekday 2.08, mean 113/h; West Village (zone 249): peak 22:00, weekend/weekday 1.66, mean 113/h; Lenox Hill West (zone 141): peak 18:00, weekend/weekday 0.90, mean 108/h; Midtown South (zone 164): peak 18:00, weekend/weekday 0.88, mean 110/h; Upper West Side North (zone 238): peak 18:00, weekend/weekday 0.85, mean 97/h.\n\nQUESTION: How many people were unable to find a taxi in Midtown during June?\n\nANSWER:",
+  "raw_output": "INSUFFICIENT EVIDENCE: The evidence does not contain information about the number of people unable to find a taxi in Midtown during June. It only provides data on pickup counts per zone and hour, but does not account for demand or the number of people trying to hail a taxi.",
+  "stats": {
+    "total_duration": 9472526900,
+    "prompt_eval_count": 1110,
+    "eval_count": 59,
+    "done_reason": "stop"
+  }
+}

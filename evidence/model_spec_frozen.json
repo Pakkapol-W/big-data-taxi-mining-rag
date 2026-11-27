@@ -1,0 +1,31 @@
+{
+  "frozen_at": "2026-11-28T02:39:47",
+  "model": "HistGradientBoostingRegressor",
+  "sklearn": "1.9.1",
+  "setting": {
+    "name": "hgb_d",
+    "loss": "poisson",
+    "learning_rate": 0.1,
+    "max_iter": 200,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 20
+  },
+  "features": [
+    "zone_id",
+    "hour_of_day",
+    "weekday",
+    "lag1",
+    "lag24",
+    "mean24",
+    "lag168"
+  ],
+  "seed": 42,
+  "preprocessing": "OrdinalEncoder(zone_id) fitted on the fit rows; numeric passthrough",
+  "selected_by": "lowest valid_mae on 2024-05",
+  "refit_on": [
+    "2024-04",
+    "2024-05"
+  ],
+  "test_month": "2024-06",
+  "baseline": "y(h-168)"
+}

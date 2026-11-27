@@ -1,0 +1,1109 @@
+{
+  "mode": "full",
+  "note": "Counts are recorded yellow-taxi pickups, not demand. Differences are associations; nothing here identifies a cause.",
+  "scope": {
+    "window": {
+      "start": "2024-04-01 00:00:00",
+      "end": "2024-07-01 00:00:00"
+    },
+    "zones_all": "all valid zones (excl. 264/265)",
+    "zones_forecast": "top 20 by retained April pickups",
+    "time": "New York local",
+    "sources": [
+      "outputs/zone_hour_all.parquet",
+      "outputs/top_zones.csv",
+      "evidence/quality_report.csv"
+    ]
+  },
+  "temporal": {
+    "question": "How do pickups vary by day, weekday and hour of day (all valid zones)?",
+    "daily_total": [
+      {
+        "date": "2024-04-01",
+        "pickups": 92371
+      },
+      {
+        "date": "2024-04-02",
+        "pickups": 129934
+      },
+      {
+        "date": "2024-04-03",
+        "pickups": 138081
+      },
+      {
+        "date": "2024-04-04",
+        "pickups": 135693
+      },
+      {
+        "date": "2024-04-05",
+        "pickups": 132645
+      },
+      {
+        "date": "2024-04-06",
+        "pickups": 129752
+      },
+      {
+        "date": "2024-04-07",
+        "pickups": 103978
+      },
+      {
+        "date": "2024-04-08",
+        "pickups": 95804
+      },
+      {
+        "date": "2024-04-09",
+        "pickups": 118981
+      },
+      {
+        "date": "2024-04-10",
+        "pickups": 120295
+      },
+      {
+        "date": "2024-04-11",
+        "pickups": 140947
+      },
+      {
+        "date": "2024-04-12",
+        "pickups": 122126
+      },
+      {
+        "date": "2024-04-13",
+        "pickups": 128029
+      },
+      {
+        "date": "2024-04-14",
+        "pickups": 109855
+      },
+      {
+        "date": "2024-04-15",
+        "pickups": 99438
+      },
+      {
+        "date": "2024-04-16",
+        "pickups": 109476
+      },
+      {
+        "date": "2024-04-17",
+        "pickups": 124943
+      },
+      {
+        "date": "2024-04-18",
+        "pickups": 132601
+      },
+      {
+        "date": "2024-04-19",
+        "pickups": 117488
+      },
+      {
+        "date": "2024-04-20",
+        "pickups": 130980
+      },
+      {
+        "date": "2024-04-21",
+        "pickups": 104109
+      },
+      {
+        "date": "2024-04-22",
+        "pickups": 88934
+      },
+      {
+        "date": "2024-04-23",
+        "pickups": 98498
+      },
+      {
+        "date": "2024-04-24",
+        "pickups": 106990
+      },
+      {
+        "date": "2024-04-25",
+        "pickups": 121217
+      },
+      {
+        "date": "2024-04-26",
+        "pickups": 111227
+      },
+      {
+        "date": "2024-04-27",
+        "pickups": 115953
+      },
+      {
+        "date": "2024-04-28",
+        "pickups": 97625
+      },
+      {
+        "date": "2024-04-29",
+        "pickups": 95566
+      },
+      {
+        "date": "2024-04-30",
+        "pickups": 110261
+      },
+      {
+        "date": "2024-05-01",
+        "pickups": 120147
+      },
+      {
+        "date": "2024-05-02",
+        "pickups": 131224
+      },
+      {
+        "date": "2024-05-03",
+        "pickups": 126140
+      },
+      {
+        "date": "2024-05-04",
+        "pickups": 131738
+      },
+      {
+        "date": "2024-05-05",
+        "pickups": 118281
+      },
+      {
+        "date": "2024-05-06",
+        "pickups": 101409
+      },
+      {
+        "date": "2024-05-07",
+        "pickups": 117604
+      },
+      {
+        "date": "2024-05-08",
+        "pickups": 125861
+      },
+      {
+        "date": "2024-05-09",
+        "pickups": 134698
+      },
+      {
+        "date": "2024-05-10",
+        "pickups": 136398
+      },
+      {
+        "date": "2024-05-11",
+        "pickups": 128969
+      },
+      {
+        "date": "2024-05-12",
+        "pickups": 110760
+      },
+      {
+        "date": "2024-05-13",
+        "pickups": 109763
+      },
+      {
+        "date": "2024-05-14",
+        "pickups": 130167
+      },
+      {
+        "date": "2024-05-15",
+        "pickups": 136732
+      },
+      {
+        "date": "2024-05-16",
+        "pickups": 141865
+      },
+      {
+        "date": "2024-05-17",
+        "pickups": 131362
+      },
+      {
+        "date": "2024-05-18",
+        "pickups": 136087
+      },
+      {
+        "date": "2024-05-19",
+        "pickups": 112776
+      },
+      {
+        "date": "2024-05-20",
+        "pickups": 105027
+      },
+      {
+        "date": "2024-05-21",
+        "pickups": 119792
+      },
+      {
+        "date": "2024-05-22",
+        "pickups": 128937
+      },
+      {
+        "date": "2024-05-23",
+        "pickups": 120744
+      },
+      {
+        "date": "2024-05-24",
+        "pickups": 107803
+      },
+      {
+        "date": "2024-05-25",
+        "pickups": 88316
+      },
+      {
+        "date": "2024-05-26",
+        "pickups": 84044
+      },
+      {
+        "date": "2024-05-27",
+        "pickups": 71235
+      },
+      {
+        "date": "2024-05-28",
+        "pickups": 103011
+      },
+      {
+        "date": "2024-05-29",
+        "pickups": 119452
+      },
+      {
+        "date": "2024-05-30",
+        "pickups": 121878
+      },
+      {
+        "date": "2024-05-31",
+        "pickups": 115339
+      },
+      {
+        "date": "2024-06-01",
+        "pickups": 128638
+      },
+      {
+        "date": "2024-06-02",
+        "pickups": 105202
+      },
+      {
+        "date": "2024-06-03",
+        "pickups": 107955
+      },
+      {
+        "date": "2024-06-04",
+        "pickups": 122854
+      },
+      {
+        "date": "2024-06-05",
+        "pickups": 132200
+      },
+      {
+        "date": "2024-06-06",
+        "pickups": 140102
+      },
+      {
+        "date": "2024-06-07",
+        "pickups": 129988
+      },
+      {
+        "date": "2024-06-08",
+        "pickups": 130243
+      },
+      {
+        "date": "2024-06-09",
+        "pickups": 105287
+      },
+      {
+        "date": "2024-06-10",
+        "pickups": 104114
+      },
+      {
+        "date": "2024-06-11",
+        "pickups": 117757
+      },
+      {
+        "date": "2024-06-12",
+        "pickups": 120742
+      },
+      {
+        "date": "2024-06-13",
+        "pickups": 126300
+      },
+      {
+        "date": "2024-06-14",
+        "pickups": 121561
+      },
+      {
+        "date": "2024-06-15",
+        "pickups": 113166
+      },
+      {
+        "date": "2024-06-16",
+        "pickups": 103434
+      },
+      {
+        "date": "2024-06-17",
+        "pickups": 98820
+      },
+      {
+        "date": "2024-06-18",
+        "pickups": 120274
+      },
+      {
+        "date": "2024-06-19",
+        "pickups": 101399
+      },
+      {
+        "date": "2024-06-20",
+        "pickups": 122546
+      },
+      {
+        "date": "2024-06-21",
+        "pickups": 117155
+      },
+      {
+        "date": "2024-06-22",
+        "pickups": 115846
+      },
+      {
+        "date": "2024-06-23",
+        "pickups": 100740
+      },
+      {
+        "date": "2024-06-24",
+        "pickups": 108088
+      },
+      {
+        "date": "2024-06-25",
+        "pickups": 124957
+      },
+      {
+        "date": "2024-06-26",
+        "pickups": 130944
+      },
+      {
+        "date": "2024-06-27",
+        "pickups": 125534
+      },
+      {
+        "date": "2024-06-28",
+        "pickups": 110138
+      },
+      {
+        "date": "2024-06-29",
+        "pickups": 107698
+      },
+      {
+        "date": "2024-06-30",
+        "pickups": 89831
+      }
+    ],
+    "by_month": {
+      "2024-04": 3463797,
+      "2024-05": 3667559,
+      "2024-06": 3483513
+    },
+    "mean_daily_by_weekday": {
+      "Mon": 98348.0,
+      "Tue": 117197.4,
+      "Wed": 123594.1,
+      "Thu": 130411.5,
+      "Fri": 121490.0,
+      "Sat": 121955.0,
+      "Sun": 103532.5
+    },
+    "mean_hourly_weekday": [
+      2242.3,
+      1024.5,
+      538.0,
+      347.9,
+      408.4,
+      790.1,
+      1940.0,
+      3987.9,
+      5334.7,
+      5401.3,
+      5403.6,
+      5697.2,
+      6148.4,
+      6376.9,
+      7030.4,
+      7254.7,
+      7283.6,
+      8237.8,
+      8801.3,
+      7501.0,
+      6922.0,
+      7394.7,
+      6995.7,
+      5145.7
+    ],
+    "mean_hourly_weekend": [
+      6403.7,
+      5005.6,
+      3542.6,
+      2256.7,
+      1329.4,
+      601.0,
+      956.7,
+      1469.6,
+      2260.2,
+      3496.3,
+      4627.3,
+      5507.4,
+      6255.4,
+      6584.3,
+      6649.1,
+      6623.8,
+      6819.5,
+      7012.6,
+      7030.2,
+      6436.1,
+      5501.7,
+      5622.2,
+      5634.3,
+      5118.0
+    ],
+    "weekday_peak_hour": 18,
+    "weekday_trough_hour": 3,
+    "weekday_peak_to_trough": 25.3,
+    "weekend_peak_hour": 18,
+    "busiest_day": {
+      "date": "2024-05-16",
+      "pickups": 141865
+    },
+    "quietest_day": {
+      "date": "2024-05-27",
+      "pickups": 71235
+    },
+    "unknown_hours_skipped": 0
+  },
+  "zones": {
+    "question": "How do the 20 forecast zones differ?",
+    "n_valid_zones": 263,
+    "top20_share_of_all_pickups": 0.6217,
+    "top20_total_pickups": 6599636,
+    "highest_cv_zone": 79,
+    "highest_weekend_ratio_zone": 79,
+    "per_zone": [
+      {
+        "zone_id": 237,
+        "total_pickups": 503262,
+        "april_pickups": 163473,
+        "mean_per_hour": 230.43,
+        "peak_hour": 18,
+        "weekend_to_weekday_ratio": 0.654,
+        "cv_hourly": 0.762,
+        "zero_hours": 10,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Upper East Side South",
+        "rank": 1
+      },
+      {
+        "zone_id": 161,
+        "total_pickups": 495446,
+        "april_pickups": 161717,
+        "mean_per_hour": 226.85,
+        "peak_hour": 18,
+        "weekend_to_weekday_ratio": 0.588,
+        "cv_hourly": 0.81,
+        "zero_hours": 1,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Midtown Center",
+        "rank": 2
+      },
+      {
+        "zone_id": 132,
+        "total_pickups": 471245,
+        "april_pickups": 152864,
+        "mean_per_hour": 215.77,
+        "peak_hour": 16,
+        "weekend_to_weekday_ratio": 1.012,
+        "cv_hourly": 0.593,
+        "zero_hours": 2,
+        "unknown_hours": 0,
+        "Borough": "Queens",
+        "Zone": "JFK Airport",
+        "rank": 3
+      },
+      {
+        "zone_id": 236,
+        "total_pickups": 460031,
+        "april_pickups": 150781,
+        "mean_per_hour": 210.64,
+        "peak_hour": 15,
+        "weekend_to_weekday_ratio": 0.662,
+        "cv_hourly": 0.782,
+        "zero_hours": 28,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Upper East Side North",
+        "rank": 4
+      },
+      {
+        "zone_id": 162,
+        "total_pickups": 361808,
+        "april_pickups": 118181,
+        "mean_per_hour": 165.66,
+        "peak_hour": 18,
+        "weekend_to_weekday_ratio": 0.651,
+        "cv_hourly": 0.708,
+        "zero_hours": 1,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Midtown East",
+        "rank": 5
+      },
+      {
+        "zone_id": 142,
+        "total_pickups": 345794,
+        "april_pickups": 115900,
+        "mean_per_hour": 158.33,
+        "peak_hour": 22,
+        "weekend_to_weekday_ratio": 0.898,
+        "cv_hourly": 0.751,
+        "zero_hours": 11,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Lincoln Square East",
+        "rank": 6
+      },
+      {
+        "zone_id": 230,
+        "total_pickups": 350777,
+        "april_pickups": 115515,
+        "mean_per_hour": 160.61,
+        "peak_hour": 22,
+        "weekend_to_weekday_ratio": 0.866,
+        "cv_hourly": 0.656,
+        "zero_hours": 0,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Times Sq/Theatre District",
+        "rank": 7
+      },
+      {
+        "zone_id": 186,
+        "total_pickups": 333294,
+        "april_pickups": 110294,
+        "mean_per_hour": 152.61,
+        "peak_hour": 18,
+        "weekend_to_weekday_ratio": 0.891,
+        "cv_hourly": 0.546,
+        "zero_hours": 0,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Penn Station/Madison Sq West",
+        "rank": 8
+      },
+      {
+        "zone_id": 138,
+        "total_pickups": 350085,
+        "april_pickups": 110079,
+        "mean_per_hour": 160.3,
+        "peak_hour": 14,
+        "weekend_to_weekday_ratio": 0.753,
+        "cv_hourly": 0.735,
+        "zero_hours": 136,
+        "unknown_hours": 0,
+        "Borough": "Queens",
+        "Zone": "LaGuardia Airport",
+        "rank": 9
+      },
+      {
+        "zone_id": 239,
+        "total_pickups": 299518,
+        "april_pickups": 100169,
+        "mean_per_hour": 137.14,
+        "peak_hour": 17,
+        "weekend_to_weekday_ratio": 0.975,
+        "cv_hourly": 0.674,
+        "zero_hours": 8,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Upper West Side South",
+        "rank": 10
+      },
+      {
+        "zone_id": 163,
+        "total_pickups": 304221,
+        "april_pickups": 99378,
+        "mean_per_hour": 139.3,
+        "peak_hour": 18,
+        "weekend_to_weekday_ratio": 0.728,
+        "cv_hourly": 0.737,
+        "zero_hours": 1,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Midtown North",
+        "rank": 11
+      },
+      {
+        "zone_id": 170,
+        "total_pickups": 306161,
+        "april_pickups": 98803,
+        "mean_per_hour": 140.18,
+        "peak_hour": 18,
+        "weekend_to_weekday_ratio": 0.752,
+        "cv_hourly": 0.668,
+        "zero_hours": 2,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Murray Hill",
+        "rank": 12
+      },
+      {
+        "zone_id": 234,
+        "total_pickups": 283158,
+        "april_pickups": 92032,
+        "mean_per_hour": 129.65,
+        "peak_hour": 18,
+        "weekend_to_weekday_ratio": 0.887,
+        "cv_hourly": 0.723,
+        "zero_hours": 8,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Union Sq",
+        "rank": 13
+      },
+      {
+        "zone_id": 68,
+        "total_pickups": 285347,
+        "april_pickups": 91762,
+        "mean_per_hour": 130.65,
+        "peak_hour": 18,
+        "weekend_to_weekday_ratio": 1.017,
+        "cv_hourly": 0.616,
+        "zero_hours": 0,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "East Chelsea",
+        "rank": 14
+      },
+      {
+        "zone_id": 48,
+        "total_pickups": 266452,
+        "april_pickups": 88209,
+        "mean_per_hour": 122.0,
+        "peak_hour": 22,
+        "weekend_to_weekday_ratio": 1.171,
+        "cv_hourly": 0.599,
+        "zero_hours": 0,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Clinton East",
+        "rank": 15
+      },
+      {
+        "zone_id": 79,
+        "total_pickups": 247492,
+        "april_pickups": 83137,
+        "mean_per_hour": 113.32,
+        "peak_hour": 23,
+        "weekend_to_weekday_ratio": 2.078,
+        "cv_hourly": 1.057,
+        "zero_hours": 0,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "East Village",
+        "rank": 16
+      },
+      {
+        "zone_id": 249,
+        "total_pickups": 246582,
+        "april_pickups": 81269,
+        "mean_per_hour": 112.9,
+        "peak_hour": 22,
+        "weekend_to_weekday_ratio": 1.661,
+        "cv_hourly": 0.942,
+        "zero_hours": 0,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "West Village",
+        "rank": 17
+      },
+      {
+        "zone_id": 141,
+        "total_pickups": 236759,
+        "april_pickups": 78873,
+        "mean_per_hour": 108.41,
+        "peak_hour": 18,
+        "weekend_to_weekday_ratio": 0.903,
+        "cv_hourly": 0.625,
+        "zero_hours": 1,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Lenox Hill West",
+        "rank": 18
+      },
+      {
+        "zone_id": 164,
+        "total_pickups": 240011,
+        "april_pickups": 77907,
+        "mean_per_hour": 109.9,
+        "peak_hour": 18,
+        "weekend_to_weekday_ratio": 0.879,
+        "cv_hourly": 0.655,
+        "zero_hours": 0,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Midtown South",
+        "rank": 19
+      },
+      {
+        "zone_id": 238,
+        "total_pickups": 212193,
+        "april_pickups": 71607,
+        "mean_per_hour": 97.16,
+        "peak_hour": 18,
+        "weekend_to_weekday_ratio": 0.85,
+        "cv_hourly": 0.695,
+        "zero_hours": 26,
+        "unknown_hours": 0,
+        "Borough": "Manhattan",
+        "Zone": "Upper West Side North",
+        "rank": 20
+      }
+    ]
+  },
+  "quality": {
+    "question": "How much do the quality rules change the counts?",
+    "input_rows": 10777315,
+    "retained_rows": 10614869,
+    "quarantined_rows": 162446,
+    "rows_with_any_flag": 1349763,
+    "quarantined_share": 0.015073,
+    "flagged_share": 0.125241,
+    "by_rule": [
+      {
+        "rule_id": "R1",
+        "action": "quarantine",
+        "quarantined_rows": 0,
+        "flagged_rows": 0
+      },
+      {
+        "rule_id": "R2",
+        "action": "quarantine",
+        "quarantined_rows": 24,
+        "flagged_rows": 0
+      },
+      {
+        "rule_id": "R3",
+        "action": "quarantine",
+        "quarantined_rows": 40225,
+        "flagged_rows": 0
+      },
+      {
+        "rule_id": "R4",
+        "action": "quarantine extra copies",
+        "quarantined_rows": 0,
+        "flagged_rows": 0
+      },
+      {
+        "rule_id": "R4b",
+        "action": "quarantine the negative reversal; keep the original",
+        "quarantined_rows": 122197,
+        "flagged_rows": 0
+      },
+      {
+        "rule_id": "R5",
+        "action": "flag f_order (retained)",
+        "quarantined_rows": 0,
+        "flagged_rows": 3126
+      },
+      {
+        "rule_id": "R6a",
+        "action": "flag f_distance (retained)",
+        "quarantined_rows": 0,
+        "flagged_rows": 132180
+      },
+      {
+        "rule_id": "R6b",
+        "action": "flag f_fare (retained)",
+        "quarantined_rows": 0,
+        "flagged_rows": 56986
+      },
+      {
+        "rule_id": "R7",
+        "action": "flag f_missing (retained, not filled)",
+        "quarantined_rows": 0,
+        "flagged_rows": 1222683
+      }
+    ],
+    "per_zone": [
+      {
+        "zone_id": 48,
+        "retained": 266452,
+        "f_fare": 1487,
+        "f_distance": 3140,
+        "f_order": 63,
+        "f_missing": 24261,
+        "quarantined_R2": 1,
+        "quarantined_R4b": 3596,
+        "quarantined": 3597,
+        "input": 270049,
+        "quarantined_share": 0.01332,
+        "fare_flag_share": 0.00558
+      },
+      {
+        "zone_id": 68,
+        "retained": 285347,
+        "f_fare": 1473,
+        "f_distance": 3080,
+        "f_order": 59,
+        "f_missing": 28476,
+        "quarantined_R2": 1,
+        "quarantined_R4b": 2971,
+        "quarantined": 2972,
+        "input": 288319,
+        "quarantined_share": 0.01031,
+        "fare_flag_share": 0.00516
+      },
+      {
+        "zone_id": 79,
+        "retained": 247492,
+        "f_fare": 1847,
+        "f_distance": 2349,
+        "f_order": 65,
+        "f_missing": 45454,
+        "quarantined_R2": 0,
+        "quarantined_R4b": 2474,
+        "quarantined": 2474,
+        "input": 249966,
+        "quarantined_share": 0.0099,
+        "fare_flag_share": 0.00746
+      },
+      {
+        "zone_id": 132,
+        "retained": 471245,
+        "f_fare": 1926,
+        "f_distance": 10223,
+        "f_order": 175,
+        "f_missing": 1223,
+        "quarantined_R2": 5,
+        "quarantined_R4b": 15788,
+        "quarantined": 15793,
+        "input": 487038,
+        "quarantined_share": 0.03243,
+        "fare_flag_share": 0.00409
+      },
+      {
+        "zone_id": 138,
+        "retained": 350085,
+        "f_fare": 457,
+        "f_distance": 3549,
+        "f_order": 124,
+        "f_missing": 1941,
+        "quarantined_R2": 6,
+        "quarantined_R4b": 4317,
+        "quarantined": 4323,
+        "input": 354408,
+        "quarantined_share": 0.0122,
+        "fare_flag_share": 0.00131
+      },
+      {
+        "zone_id": 141,
+        "retained": 236759,
+        "f_fare": 1226,
+        "f_distance": 1975,
+        "f_order": 54,
+        "f_missing": 21903,
+        "quarantined_R2": 0,
+        "quarantined_R4b": 2274,
+        "quarantined": 2274,
+        "input": 239033,
+        "quarantined_share": 0.00951,
+        "fare_flag_share": 0.00518
+      },
+      {
+        "zone_id": 142,
+        "retained": 345794,
+        "f_fare": 1578,
+        "f_distance": 2669,
+        "f_order": 80,
+        "f_missing": 29085,
+        "quarantined_R2": 0,
+        "quarantined_R4b": 3141,
+        "quarantined": 3141,
+        "input": 348935,
+        "quarantined_share": 0.009,
+        "fare_flag_share": 0.00456
+      },
+      {
+        "zone_id": 161,
+        "retained": 495446,
+        "f_fare": 2031,
+        "f_distance": 3853,
+        "f_order": 85,
+        "f_missing": 33877,
+        "quarantined_R2": 1,
+        "quarantined_R4b": 5608,
+        "quarantined": 5609,
+        "input": 501055,
+        "quarantined_share": 0.01119,
+        "fare_flag_share": 0.0041
+      },
+      {
+        "zone_id": 162,
+        "retained": 361808,
+        "f_fare": 1355,
+        "f_distance": 3257,
+        "f_order": 73,
+        "f_missing": 18628,
+        "quarantined_R2": 1,
+        "quarantined_R4b": 3691,
+        "quarantined": 3692,
+        "input": 365500,
+        "quarantined_share": 0.0101,
+        "fare_flag_share": 0.00375
+      },
+      {
+        "zone_id": 163,
+        "retained": 304221,
+        "f_fare": 1350,
+        "f_distance": 2750,
+        "f_order": 73,
+        "f_missing": 21824,
+        "quarantined_R2": 0,
+        "quarantined_R4b": 3589,
+        "quarantined": 3589,
+        "input": 307810,
+        "quarantined_share": 0.01166,
+        "fare_flag_share": 0.00444
+      },
+      {
+        "zone_id": 164,
+        "retained": 240011,
+        "f_fare": 1392,
+        "f_distance": 2693,
+        "f_order": 59,
+        "f_missing": 25216,
+        "quarantined_R2": 0,
+        "quarantined_R4b": 2911,
+        "quarantined": 2911,
+        "input": 242922,
+        "quarantined_share": 0.01198,
+        "fare_flag_share": 0.0058
+      },
+      {
+        "zone_id": 170,
+        "retained": 306161,
+        "f_fare": 1508,
+        "f_distance": 3180,
+        "f_order": 87,
+        "f_missing": 26896,
+        "quarantined_R2": 1,
+        "quarantined_R4b": 3247,
+        "quarantined": 3248,
+        "input": 309409,
+        "quarantined_share": 0.0105,
+        "fare_flag_share": 0.00493
+      },
+      {
+        "zone_id": 186,
+        "retained": 333294,
+        "f_fare": 1035,
+        "f_distance": 2914,
+        "f_order": 81,
+        "f_missing": 12247,
+        "quarantined_R2": 0,
+        "quarantined_R4b": 4213,
+        "quarantined": 4213,
+        "input": 337507,
+        "quarantined_share": 0.01248,
+        "fare_flag_share": 0.00311
+      },
+      {
+        "zone_id": 230,
+        "retained": 350777,
+        "f_fare": 1656,
+        "f_distance": 4422,
+        "f_order": 94,
+        "f_missing": 23568,
+        "quarantined_R2": 1,
+        "quarantined_R4b": 5774,
+        "quarantined": 5775,
+        "input": 356552,
+        "quarantined_share": 0.0162,
+        "fare_flag_share": 0.00472
+      },
+      {
+        "zone_id": 234,
+        "retained": 283158,
+        "f_fare": 1503,
+        "f_distance": 2189,
+        "f_order": 64,
+        "f_missing": 31296,
+        "quarantined_R2": 2,
+        "quarantined_R4b": 2426,
+        "quarantined": 2428,
+        "input": 285586,
+        "quarantined_share": 0.0085,
+        "fare_flag_share": 0.00531
+      },
+      {
+        "zone_id": 236,
+        "retained": 460031,
+        "f_fare": 2053,
+        "f_distance": 3205,
+        "f_order": 96,
+        "f_missing": 41647,
+        "quarantined_R2": 0,
+        "quarantined_R4b": 3362,
+        "quarantined": 3362,
+        "input": 463393,
+        "quarantined_share": 0.00726,
+        "fare_flag_share": 0.00446
+      },
+      {
+        "zone_id": 237,
+        "retained": 503262,
+        "f_fare": 1975,
+        "f_distance": 3477,
+        "f_order": 104,
+        "f_missing": 30332,
+        "quarantined_R2": 0,
+        "quarantined_R4b": 4683,
+        "quarantined": 4683,
+        "input": 507945,
+        "quarantined_share": 0.00922,
+        "fare_flag_share": 0.00392
+      },
+      {
+        "zone_id": 238,
+        "retained": 212193,
+        "f_fare": 1259,
+        "f_distance": 1947,
+        "f_order": 44,
+        "f_missing": 27666,
+        "quarantined_R2": 0,
+        "quarantined_R4b": 1751,
+        "quarantined": 1751,
+        "input": 213944,
+        "quarantined_share": 0.00818,
+        "fare_flag_share": 0.00593
+      },
+      {
+        "zone_id": 239,
+        "retained": 299518,
+        "f_fare": 1906,
+        "f_distance": 2487,
+        "f_order": 80,
+        "f_missing": 36680,
+        "quarantined_R2": 0,
+        "quarantined_R4b": 2354,
+        "quarantined": 2354,
+        "input": 301872,
+        "quarantined_share": 0.0078,
+        "fare_flag_share": 0.00636
+      },
+      {
+        "zone_id": 249,
+        "retained": 246582,
+        "f_fare": 1464,
+        "f_distance": 1906,
+        "f_order": 58,
+        "f_missing": 36448,
+        "quarantined_R2": 0,
+        "quarantined_R4b": 2173,
+        "quarantined": 2173,
+        "input": 248755,
+        "quarantined_share": 0.00874,
+        "fare_flag_share": 0.00594
+      }
+    ],
+    "per_zone_note": "Quarantined rows (e.g. R4b refund reversals) are removed from pickup counts; flagged rows stay in counts and are excluded only from fare/distance analyses.",
+    "top20_quarantined_share": 0.01203,
+    "highest_quarantine_zone": {
+      "zone_id": 132,
+      "share": 0.03243
+    }
+  }
+}

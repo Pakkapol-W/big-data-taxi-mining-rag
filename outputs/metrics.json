@@ -1,0 +1,439 @@
+{
+  "mode": "full",
+  "note": "Target = recorded pickups (not demand). Mode smoke says nothing about accuracy.",
+  "target": "pickup_count at hour h = t+1, predicted at the end of hour t",
+  "splits": {
+    "train": "2024-04",
+    "valid": "2024-05",
+    "test": "2024-06"
+  },
+  "features": [
+    "zone_id",
+    "hour_of_day",
+    "weekday",
+    "lag1",
+    "lag24",
+    "mean24",
+    "lag168"
+  ],
+  "rows": {
+    "rows_total": 43680,
+    "rows_dropped_no_history": 3360,
+    "dropped_by_split": {
+      "train": 3360
+    },
+    "smoke_null_filled": 0,
+    "rows_by_split": {
+      "train": 11040,
+      "valid": 14880,
+      "test": 14400
+    }
+  },
+  "selection": {
+    "metric": "valid_mae",
+    "settings": [
+      {
+        "setting": "hgb_a",
+        "params": {
+          "loss": "squared_error",
+          "learning_rate": 0.1,
+          "max_iter": 200,
+          "max_leaf_nodes": 31,
+          "min_samples_leaf": 20
+        },
+        "train_rows": 11040,
+        "valid_rows": 14880,
+        "valid_mae": 20.4764,
+        "valid_rmse": 31.844,
+        "seconds": 0.392
+      },
+      {
+        "setting": "hgb_b",
+        "params": {
+          "loss": "squared_error",
+          "learning_rate": 0.05,
+          "max_iter": 400,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 20
+        },
+        "train_rows": 11040,
+        "valid_rows": 14880,
+        "valid_mae": 20.5726,
+        "valid_rmse": 31.8859,
+        "seconds": 0.376
+      },
+      {
+        "setting": "hgb_c",
+        "params": {
+          "loss": "squared_error",
+          "learning_rate": 0.05,
+          "max_iter": 300,
+          "max_leaf_nodes": 63,
+          "min_samples_leaf": 40,
+          "l2_regularization": 1.0
+        },
+        "train_rows": 11040,
+        "valid_rows": 14880,
+        "valid_mae": 20.4287,
+        "valid_rmse": 31.8417,
+        "seconds": 0.951
+      },
+      {
+        "setting": "hgb_d",
+        "params": {
+          "loss": "poisson",
+          "learning_rate": 0.1,
+          "max_iter": 200,
+          "max_leaf_nodes": 31,
+          "min_samples_leaf": 20
+        },
+        "train_rows": 11040,
+        "valid_rows": 14880,
+        "valid_mae": 20.2091,
+        "valid_rmse": 31.5043,
+        "seconds": 0.337
+      }
+    ],
+    "baseline_on_valid": {
+      "valid_mae": 28.8388,
+      "valid_rmse": 46.2253
+    },
+    "chosen": "hgb_d"
+  },
+  "frozen_spec": "evidence/model_spec_frozen.json",
+  "test": {
+    "rows": 14400,
+    "zones": 20,
+    "mae_model": 19.7232,
+    "rmse_model": 30.9536,
+    "mae_baseline": 29.2861,
+    "rmse_baseline": 47.0024,
+    "mean_y": 149.1544,
+    "negative_predictions_clipped": "clipped to 0, not rounded",
+    "mae_improvement_vs_baseline": 0.3265
+  },
+  "per_zone": [
+    {
+      "zone_id": 138,
+      "rows": 720,
+      "mean_y": 158.9722,
+      "mae_model": 32.3211,
+      "mae_baseline": 42.6333,
+      "relative_mae_model": 0.2033,
+      "model_beats_baseline": true,
+      "Borough": "Queens",
+      "Zone": "LaGuardia Airport"
+    },
+    {
+      "zone_id": 132,
+      "rows": 720,
+      "mean_y": 216.9028,
+      "mae_model": 31.2086,
+      "mae_baseline": 43.5264,
+      "relative_mae_model": 0.1439,
+      "model_beats_baseline": true,
+      "Borough": "Queens",
+      "Zone": "JFK Airport"
+    },
+    {
+      "zone_id": 161,
+      "rows": 720,
+      "mean_y": 223.7014,
+      "mae_model": 25.4968,
+      "mae_baseline": 38.2389,
+      "relative_mae_model": 0.114,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Midtown Center"
+    },
+    {
+      "zone_id": 186,
+      "rows": 720,
+      "mean_y": 152.8014,
+      "mae_model": 24.0417,
+      "mae_baseline": 33.6889,
+      "relative_mae_model": 0.1573,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Penn Station/Madison Sq West"
+    },
+    {
+      "zone_id": 236,
+      "rows": 720,
+      "mean_y": 197.3653,
+      "mae_model": 23.0754,
+      "mae_baseline": 37.3819,
+      "relative_mae_model": 0.1169,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Upper East Side North"
+    },
+    {
+      "zone_id": 237,
+      "rows": 720,
+      "mean_y": 219.3833,
+      "mae_model": 22.5984,
+      "mae_baseline": 36.1347,
+      "relative_mae_model": 0.103,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Upper East Side South"
+    },
+    {
+      "zone_id": 142,
+      "rows": 720,
+      "mean_y": 147.4833,
+      "mae_model": 20.2813,
+      "mae_baseline": 30.5028,
+      "relative_mae_model": 0.1375,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Lincoln Square East"
+    },
+    {
+      "zone_id": 79,
+      "rows": 720,
+      "mean_y": 116.0319,
+      "mae_model": 19.5484,
+      "mae_baseline": 26.9444,
+      "relative_mae_model": 0.1685,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "East Village"
+    },
+    {
+      "zone_id": 230,
+      "rows": 720,
+      "mean_y": 160.1125,
+      "mae_model": 19.0265,
+      "mae_baseline": 27.7333,
+      "relative_mae_model": 0.1188,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Times Sq/Theatre District"
+    },
+    {
+      "zone_id": 162,
+      "rows": 720,
+      "mean_y": 165.9222,
+      "mae_model": 18.7761,
+      "mae_baseline": 29.5847,
+      "relative_mae_model": 0.1132,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Midtown East"
+    },
+    {
+      "zone_id": 249,
+      "rows": 720,
+      "mean_y": 115.1917,
+      "mae_model": 18.1685,
+      "mae_baseline": 25.7125,
+      "relative_mae_model": 0.1577,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "West Village"
+    },
+    {
+      "zone_id": 239,
+      "rows": 720,
+      "mean_y": 133.3236,
+      "mae_model": 17.4571,
+      "mae_baseline": 28.8861,
+      "relative_mae_model": 0.1309,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Upper West Side South"
+    },
+    {
+      "zone_id": 68,
+      "rows": 720,
+      "mean_y": 133.6181,
+      "mae_model": 17.1168,
+      "mae_baseline": 24.8847,
+      "relative_mae_model": 0.1281,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "East Chelsea"
+    },
+    {
+      "zone_id": 48,
+      "rows": 720,
+      "mean_y": 123.4653,
+      "mae_model": 16.7235,
+      "mae_baseline": 22.4042,
+      "relative_mae_model": 0.1355,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Clinton East"
+    },
+    {
+      "zone_id": 234,
+      "rows": 720,
+      "mean_y": 131.8667,
+      "mae_model": 16.1824,
+      "mae_baseline": 27.0694,
+      "relative_mae_model": 0.1227,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Union Sq"
+    },
+    {
+      "zone_id": 170,
+      "rows": 720,
+      "mean_y": 142.6417,
+      "mae_model": 16.1087,
+      "mae_baseline": 24.1042,
+      "relative_mae_model": 0.1129,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Murray Hill"
+    },
+    {
+      "zone_id": 163,
+      "rows": 720,
+      "mean_y": 137.2819,
+      "mae_model": 15.9565,
+      "mae_baseline": 23.7361,
+      "relative_mae_model": 0.1162,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Midtown North"
+    },
+    {
+      "zone_id": 164,
+      "rows": 720,
+      "mean_y": 110.1861,
+      "mae_model": 14.9401,
+      "mae_baseline": 22.9583,
+      "relative_mae_model": 0.1356,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Midtown South"
+    },
+    {
+      "zone_id": 141,
+      "rows": 720,
+      "mean_y": 105.25,
+      "mae_model": 13.0063,
+      "mae_baseline": 19.2236,
+      "relative_mae_model": 0.1236,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Lenox Hill West"
+    },
+    {
+      "zone_id": 238,
+      "rows": 720,
+      "mean_y": 91.5875,
+      "mae_model": 12.4303,
+      "mae_baseline": 20.3736,
+      "relative_mae_model": 0.1357,
+      "model_beats_baseline": true,
+      "Borough": "Manhattan",
+      "Zone": "Upper West Side North"
+    }
+  ],
+  "zones_model_beats_baseline": 20,
+  "worst_zone": {
+    "zone_id": 138,
+    "zone": "LaGuardia Airport",
+    "mae_model": 32.3211,
+    "mae_baseline": 42.6333,
+    "mean_y": 158.9722,
+    "worst_hours_of_day": [
+      {
+        "hour_of_day": 0,
+        "rows": 30,
+        "mean_y": 137.0,
+        "mae_model": 59.5351,
+        "mae_baseline": 97.5
+      },
+      {
+        "hour_of_day": 22,
+        "rows": 30,
+        "mean_y": 200.9667,
+        "mae_model": 57.2411,
+        "mae_baseline": 70.7333
+      },
+      {
+        "hour_of_day": 17,
+        "rows": 30,
+        "mean_y": 228.7333,
+        "mae_model": 48.2579,
+        "mae_baseline": 59.2333
+      }
+    ],
+    "largest_errors": [
+      {
+        "hour": "2024-06-02 18:00:00",
+        "y_true": 451.0,
+        "y_pred": 229.8334,
+        "baseline": 180.0,
+        "abs_err": 221.1666
+      },
+      {
+        "hour": "2024-06-02 21:00:00",
+        "y_true": 480.0,
+        "y_pred": 274.6355,
+        "baseline": 230.0,
+        "abs_err": 205.3645
+      },
+      {
+        "hour": "2024-06-24 00:00:00",
+        "y_true": 432.0,
+        "y_pred": 253.1285,
+        "baseline": 192.0,
+        "abs_err": 178.8715
+      },
+      {
+        "hour": "2024-06-24 01:00:00",
+        "y_true": 237.0,
+        "y_pred": 60.5486,
+        "baseline": 13.0,
+        "abs_err": 176.4514
+      },
+      {
+        "hour": "2024-06-15 00:00:00",
+        "y_true": 332.0,
+        "y_pred": 156.2133,
+        "baseline": 86.0,
+        "abs_err": 175.7867
+      }
+    ]
+  },
+  "peak": {
+    "definition": "Mon-Fri target hours 07:00, 08:00, 09:00 (New York local); fixed before testing",
+    "rows": 1200,
+    "mae_model": 20.9885,
+    "mae_baseline": 28.8783,
+    "rmse_model": 31.2466,
+    "rmse_baseline": 43.8173,
+    "mean_y": 141.5708
+  },
+  "off_peak": {
+    "rows": 13200,
+    "mae_model": 19.6082,
+    "mae_baseline": 29.3232
+  },
+  "by_cluster": [
+    {
+      "cluster_id": 0,
+      "rows": 12240,
+      "mean_y": 154.6118,
+      "mae_model": 20.0014,
+      "mae_baseline": 30.0389,
+      "peak_mae_model": 22.3408,
+      "peak_mae_baseline": 30.5824
+    },
+    {
+      "cluster_id": 1,
+      "rows": 2160,
+      "mean_y": 118.2296,
+      "mae_model": 18.1468,
+      "mae_baseline": 25.0204,
+      "peak_mae_model": 13.3257,
+      "peak_mae_baseline": 19.2222
+    }
+  ]
+}

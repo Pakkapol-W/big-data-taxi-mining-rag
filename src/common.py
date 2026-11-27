@@ -4,16 +4,22 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import sys
 from pathlib import Path
 
 import duckdb
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
+
+# Windows consoles default to cp1252, which cannot print the ✓ / 环境 used in logs. UTF-8 already on macOS.
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure") and (_stream.encoding or "").lower().replace("-", "") != "utf8":
+        _stream.reconfigure(encoding="utf-8", errors="replace")
 # Smoke never overwrites full results. clean/quarantine go to data/smoke/ (siblings, not children,
 # so a full run's "replace data/clean" can never touch smoke output and vice versa).
 SMOKE_REDIRECT = {"clean": "data/smoke/clean", "quarantine": "data/smoke/quarantine",
-                  "outputs": "outputs/smoke", "evidence": "evidence/smoke"}
+                  "outputs": "outputs/smoke", "evidence": "evidence/smoke", "dashboard": "outputs/smoke/dashboard"}
 
 
 def load_config(path: str | Path = "config.json", mode: str = "full") -> dict:

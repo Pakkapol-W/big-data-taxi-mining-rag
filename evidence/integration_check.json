@@ -1,0 +1,208 @@
+{
+  "generated_at": "2026-11-28T02:44:17",
+  "mode": "full",
+  "page": "dashboard/index.html",
+  "offline": [
+    {
+      "check": "all script/style references are local files",
+      "refs": [
+        "assets/style.css",
+        "assets/echarts.min.js",
+        "assets/data.js",
+        "assets/app.js"
+      ],
+      "remote": [],
+      "missing": [],
+      "status": "PASS"
+    },
+    {
+      "check": "app.js makes no network calls",
+      "found": [],
+      "status": "PASS"
+    },
+    {
+      "check": "vendored chart library hash recorded",
+      "file": "dashboard/assets/echarts.min.js",
+      "sha256": "e84270bd0cd5bdf60fefc26d00c2a391cb2e81f4d26a7a9ee16185a54773a3cf",
+      "status": "PASS"
+    }
+  ],
+  "traced_values": [
+    {
+      "value": "Recorded pickups, default selection (filter bar, Chart 2a)",
+      "dashboard": 6599636,
+      "source_file": "outputs/zone_hour.csv",
+      "source_value": 6599636,
+      "tolerance": 0.0,
+      "status": "PASS"
+    },
+    {
+      "value": "Quality total input (Chart 1, KPI)",
+      "dashboard": 10777315,
+      "source_file": "evidence/quality_report.csv",
+      "source_value": 10777315,
+      "tolerance": 0.0,
+      "status": "PASS"
+    },
+    {
+      "value": "Quality total retained (Chart 1, KPI)",
+      "dashboard": 10614869,
+      "source_file": "evidence/quality_report.csv",
+      "source_value": 10614869,
+      "tolerance": 0.0,
+      "status": "PASS"
+    },
+    {
+      "value": "Quality total quarantined (Chart 1, KPI)",
+      "dashboard": 162446,
+      "source_file": "evidence/quality_report.csv",
+      "source_value": 162446,
+      "tolerance": 0.0,
+      "status": "PASS"
+    },
+    {
+      "value": "input = retained + quarantined (Chart 1)",
+      "dashboard": 10777315,
+      "source_file": "derived",
+      "source_value": 10777315,
+      "tolerance": 0.0,
+      "status": "PASS"
+    },
+    {
+      "value": "June model MAE, all zones (Chart 6 selection tile)",
+      "dashboard": 19.7232,
+      "source_file": "outputs/metrics.json",
+      "source_value": 19.7232,
+      "tolerance": 0.0005,
+      "status": "PASS"
+    },
+    {
+      "value": "June baseline MAE, all zones (Chart 6 selection tile)",
+      "dashboard": 29.2861,
+      "source_file": "outputs/metrics.json",
+      "source_value": 29.2861,
+      "tolerance": 0.0001,
+      "status": "PASS"
+    },
+    {
+      "value": "Worst zone in Chart 6 (top bar)",
+      "dashboard": 138,
+      "source_file": "outputs/metrics.json",
+      "source_value": 138,
+      "tolerance": 0.0,
+      "status": "PASS"
+    },
+    {
+      "value": "Chart 6 MAE of zone 138",
+      "dashboard": 32.3211,
+      "source_file": "outputs/metrics.json",
+      "source_value": 32.3211,
+      "tolerance": 0.0005,
+      "status": "PASS"
+    },
+    {
+      "value": "Cluster sizes (Chart 4)",
+      "dashboard": [
+        17,
+        3
+      ],
+      "source_file": "outputs/clusters.csv",
+      "source_value": [
+        17,
+        3
+      ],
+      "tolerance": 0.0,
+      "status": "PASS"
+    },
+    {
+      "value": "Top-20 share of pickups (KPI)",
+      "dashboard": 0.6217,
+      "source_file": "outputs/eda_summary.json",
+      "source_value": 0.6217,
+      "tolerance": 0.0,
+      "status": "PASS"
+    }
+  ],
+  "narrative": [
+    {
+      "item": "findings 1",
+      "evidence": [
+        "EV-EDA-TEMPORAL"
+      ],
+      "unknown_ids": [],
+      "unsupported_numbers": [],
+      "status": "PASS"
+    },
+    {
+      "item": "findings 2",
+      "evidence": [
+        "EV-CLU-1",
+        "EV-CLU-0"
+      ],
+      "unknown_ids": [],
+      "unsupported_numbers": [],
+      "status": "PASS"
+    },
+    {
+      "item": "findings 3",
+      "evidence": [
+        "EV-MOD-OVERALL",
+        "EV-MOD-WORST"
+      ],
+      "unknown_ids": [],
+      "unsupported_numbers": [],
+      "status": "PASS"
+    },
+    {
+      "item": "recommendations 1",
+      "evidence": [
+        "EV-EDA-TEMPORAL",
+        "EV-CLU-1"
+      ],
+      "unknown_ids": [],
+      "unsupported_numbers": [],
+      "status": "PASS"
+    },
+    {
+      "item": "recommendations 2",
+      "evidence": [
+        "EV-MOD-OVERALL",
+        "EV-MOD-WORST"
+      ],
+      "unknown_ids": [],
+      "unsupported_numbers": [],
+      "status": "PASS"
+    },
+    {
+      "item": "limitations 1",
+      "evidence": [
+        "EV-DICT-DERIVED",
+        "EV-SCOPE"
+      ],
+      "unknown_ids": [],
+      "unsupported_numbers": [],
+      "status": "PASS"
+    },
+    {
+      "item": "limitations 2",
+      "evidence": [
+        "EV-SCOPE",
+        "EV-EDA-TEMPORAL"
+      ],
+      "unknown_ids": [],
+      "unsupported_numbers": [],
+      "status": "PASS"
+    }
+  ],
+  "manual_T9": [
+    "Open dashboard/index.html from disk with Wi-Fi off: all charts render",
+    "Zone filter: pick 'Cluster 1' -> charts 2a, 2b, 3, 5, 6 and the selection summary update",
+    "Date filter: 'Apr' -> charts 5/6 show the June-only empty state; 'Jun' restores them",
+    "'None' zones -> every filtered chart shows the empty-state message; 'Reset' restores all",
+    "Fixed charts 1 and 4 are labelled and do not change"
+  ],
+  "summary": {
+    "passed": 21,
+    "total": 21
+  }
+}

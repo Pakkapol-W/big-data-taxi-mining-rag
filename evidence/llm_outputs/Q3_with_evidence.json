@@ -1,0 +1,28 @@
+{
+  "run_id": "Q3_with_evidence",
+  "question_id": "Q3",
+  "condition": "with_evidence",
+  "evidence_ids": [
+    "EV-CLU-1",
+    "EV-CLU-0",
+    "EV-EDA-TEMPORAL"
+  ],
+  "model": "llama3.1:8b",
+  "model_digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+  "provider": "ollama (local)",
+  "ollama_version": "0.40.16",
+  "date": "2026-11-28T02:14:50+08:00",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 8192
+  },
+  "prompt": "You are answering questions about a data analysis of New York City yellow-taxi pickups (April-June 2024).\nRules:\n1. Use ONLY the evidence given below. Do not use outside knowledge and do not guess numbers.\n2. After every factual claim, cite the supporting evidence ID in square brackets, e.g. [EV-EXAMPLE].\n3. If the evidence does not contain what is needed to answer, start your reply with \"INSUFFICIENT EVIDENCE:\" and say what is missing.\n4. Do not claim that one thing causes another; the evidence shows associations only.\n5. Answer in at most 5 sentences.\n\nEVIDENCE:\n[EV-CLU-1] (source: outputs/cluster_profiles.csv; metric: Mean April hour-of-day share profile of the cluster's member zones)\nCluster 1 profile. Cluster 1 of k=2: 3 zones - Clinton East (48), East Village (79), West Village (249). Average profile peaks at 22:00. Share of daily pickups: 07:00-09:59 7.6%; 16:00-19:59 18.6%; 22:00-02:59 34.6%; 03:00-05:59 4.6%.\n[EV-CLU-0] (source: outputs/cluster_profiles.csv; metric: Mean April hour-of-day share profile of the cluster's member zones)\nCluster 0 profile. Cluster 0 of k=2: 17 zones - East Chelsea (68), JFK Airport (132), LaGuardia Airport (138), Lenox Hill West (141), Lincoln Square East (142), Midtown Center (161), Midtown East (162), Midtown North (163), Midtown South (164), Murray Hill (170), Penn Station/Madison Sq West (186), Times Sq/Theatre District (230), Union Sq (234), Upper East Side North (236), Upper East Side South (237), Upper West Side North (238), Upper West Side South (239). Average profile peaks at 18:00. Share of daily pickups: 07:00-09:59 10.7%; 16:00-19:59 27.6%; 22:00-02:59 13.3%; 03:00-05:59 1.2%.\n[EV-EDA-TEMPORAL] (source: outputs/eda_summary.json; metric: City-wide pickups per hour/day (sum over all valid zones), New York local time)\nTemporal pickup patterns. All valid zones, April-June 2024. Weekday pickups peak at 18:00 and are lowest at 03:00; the peak hour averages 25.3 times the trough hour. Weekend peak hour: 18:00. Mean pickups per day by weekday: Mon 98,348, Tue 117,197, Wed 123,594, Thu 130,412, Fri 121,490, Sat 121,955, Sun 103,532. Busiest day 2024-05-16 (141,865); quietest day 2024-05-27 (71,235). Monthly totals: 2024-04 3,463,797, 2024-05 3,667,559, 2024-06 3,483,513. Associations only.\n\nQUESTION: Which zones form the night-life cluster, and how does their daily pickup profile differ from the other zones?\n\nANSWER:",
+  "raw_output": "Based on the evidence, the night-life cluster is Cluster 1, which consists of zones Clinton East (48), East Village (79), and West Village (249). Their daily pickup profile peaks at 22:00, with a share of 34.6% of daily pickups between 22:00-02:59. This is in contrast to Cluster 0, which peaks at 18:00 and has a lower share of pickups between 22:00-02:59 (13.3%). [EV-CLU-1], [EV-CLU-0]",
+  "stats": {
+    "total_duration": 18217423200,
+    "prompt_eval_count": 738,
+    "eval_count": 119,
+    "done_reason": "stop"
+  }
+}
