@@ -15,10 +15,16 @@ Details: `team_plan.csv`, `contributions.csv`, `PROPOSAL.md`.
 
 ## Hardware and software
 
-| | Official run | Development |
+| | Machine A | Machine B |
 |---|---|---|
-| Machine | Apple M1, 8 cores, 16 GB RAM, macOS 14 | Intel i9-13900H, 16 GB RAM, Windows 11 |
+| Machine | Apple M1, 8 cores, 16 GB RAM, macOS 14 | Intel i9-13900H, 20 threads, 16 GB RAM, Windows 11 |
+| Stages run for the submitted evidence | acquisition, cleaning, storage, aggregation benchmark | exploration, clustering, forecasting, evidence corpus, LLM queries (Ollama), verification, dashboard |
 | GPU | not used | not used |
+
+A complete full-mode run on Machine B reproduced Machine A's clean and aggregate outputs exactly (identical quality
+report and zone-hour table; Method A = Method B on 264,748 keys). Only the random 20,000-row smoke sample
+(`data/sample.parquet`) differs between platforms; the submitted sample is Machine A's. The machine for each experiment
+is recorded in the `hardware` column of `evidence/experiment_log.csv`. Smoke mode and all 20 tests pass on Machine B.
 
 - Python 3.12. All packages are pinned in `requirements.txt` and have wheels for macOS arm64 and Windows x64.
 - No cluster, database server, GPU, paid API or API key is needed.
